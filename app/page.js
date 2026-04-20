@@ -547,8 +547,12 @@ export default function Page() {
               <a href="#faq" className="hover:text-slate-900">Q&A</a>
             </nav>
 
-            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-900 shadow-sm">
-              매일법률사무소 로고
+            <div className="flex items-center justify-end">
+               <img
+                  src="/head/head01.jpg"
+                   alt="매일법률사무소 로고"
+                   className="w-[160px] h-auto object-contain"
+               />
             </div>
           </div>
         </header>
