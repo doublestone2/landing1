@@ -43,3 +43,6 @@ next-env.d.ts
 node_modules
 .next
 .env.local
+
+.env.local
+maeil-492605-cf1dbf0ed564.json

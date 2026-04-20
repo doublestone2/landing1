@@ -28,9 +28,9 @@ const YES_NO = ["있음", "없음"];
 const CHILD_OPTIONS = [0, 1, 2, 3, 4];
 
 const heroPoints = [
-  "현재 소득에 맞는 진행 방향 확인",
-  "신용·담보대출을 분리해 더 정확한 진단",
-  "부양가족·재산 기준까지 반영한 예상 계산",
+  "매년 국민 10만명이 정부제도를 이용해 대출금을 줄여왔습니다.",
+  "과도한 빚으로 생활이 어려운 분들의 삶을 지켜드리는 안전한 제도입니다.",
+  "전국 어디 계셔도 전문 로펌이 전 과정을 케어 해드립니다.",
 ];
 
 const resultStats = [
@@ -148,45 +148,45 @@ const reviewCards = [
 
 const faqItems = [
   {
-    q: "개인회생과 파산 중 어떤 절차가 맞는지 모르겠습니다.",
-    a: "월소득, 부양가족, 재산·채무 구조에 따라 방향이 달라질 수 있어 현재 상황부터 먼저 확인하는 것이 중요합니다.",
+    q: "개인회생을 하면 직장이나 가족에게 알려지나요?",
+    a: "아닙니다. 개인회생 절차는 법원을 통해 진행되므로, 직장이나 가족에게 우편물이 발송되지 않도록 송달 장소를 사무실로 지정할 수 있습니다. 철저한 비밀 보장 하에 진행되니 안심하셔도 됩니다.",
   },
   {
-    q: "신용대출과 담보대출이 함께 있어도 진단이 가능한가요?",
-    a: "가능합니다. 둘을 분리해 보는 편이 전체 구조를 더 정확하게 이해하는 데 도움이 됩니다.",
+    q: "빚이 얼마 이상이어야 신청 가능한가요?",
+    a: "무담보 채무 1천만 원 이상, 담보부 채무 15억 원 이하인 경우 신청 가능합니다. 채무의 종류나 규모에 따라 전략이 달라지므로, 정확한 진단이 우선입니다.",
   },
   {
-    q: "기혼인데 자녀가 있으면 결과가 달라지나요?",
-    a: "네. 부양가족 수가 늘어나면 최저생계비와 가용소득 계산에 영향을 줘 결과가 달라질 수 있습니다.",
+    q: "연체 중이 아니어도 신청할 수 있나요?",
+    a: "네, 가능합니다. 연체 전이라도 채무 지급불능 상태가 예상된다면 신청할 수 있습니다. 오히려 연체 전 신청이 추심을 조기에 차단하고 심리적 안정을 찾는 데 훨씬 유리합니다.",
   },
   {
-    q: "본인명의 차량이 있으면 무조건 불리한가요?",
-    a: "무조건 그렇지는 않지만 차량 보유 여부와 차량가액은 함께 보는 편이 정확합니다.",
+    q: "회생을 하면 신용카드를 못 쓰나요?",
+    a: "2025년 7월부터 시행된 금융권 개정에 따라 개인회생 인가 후 1년간 변제금을 성실히 납부하면 한국신용정보원에 등록된 '1301(개인회생)' 공공기록 코드가 조기에 삭제되어 신용카드를 다시 사용하실 수 있게 됩니다.",
   },
   {
-    q: "보유 자산은 무엇까지 넣어야 하나요?",
-    a: "본인명의 부동산 시세와 전세·월세 보증금처럼 실제 보유 자산으로 볼 수 있는 항목을 기준으로 입력하는 것이 좋습니다.",
+    q: "재산이 빚보다 많아도 신청할 수 있나요?",
+    a: "개인회생은 '청산가치 보장의 원칙'에 따라, 본인의 재산보다 빚을 갚는 총액이 더 많아야 합니다. 재산이 많다면 개인회생보다는 다른 채무조정 제도가 적합할 수 있으니 전문가의 분석이 필수입니다.",
   },
   {
-    q: "월평균 소득이 낮으면 어떻게 되나요?",
-    a: "현재 설정상 일정 수준 이하의 소득은 부적합으로 분기되며, 실제 상담에서는 별도 확인이 필요할 수 있습니다.",
+    q: "월 변제금은 어떻게 결정되나요?",
+    a: "본인의 월 소득에서 최저생계비를 제외한 '가용소득' 전액을 3~5년간 변제하는 것이 원칙입니다. 부양가족 수와 소득 수준에 따라 변제금이 달라지므로, 최대한 낮추는 전략이 핵심입니다.",
   },
   {
-    q: "자가진단 결과가 적합이면 바로 신청 가능한가요?",
-    a: "네. 적합 결과가 나오면 이름과 연락처만 남기는 간단한 상담신청 폼이 이어지도록 구성할 수 있습니다.",
+    q: "기각되는 경우도 있나요?",
+    a: "서류 미비, 변제계획안의 부적절성, 소득 증빙 부족 등으로 기각될 수 있습니다. 법률 전문가의 조력을 통해 처음부터 꼼꼼하게 준비하면 기각 확률을 획기적으로 낮출 수 있습니다.",
   },
   {
-    q: "자가진단 결과는 확정 결과인가요?",
-    a: "아닙니다. 현재 입력한 정보 기반의 1차 예상치이며, 실제 사건은 추가 자료와 사실관계 검토가 필요합니다.",
+    q: "수임료가 부담되는데 분할 납부가 가능한가요?",
+    a: "네, 경제적 어려움을 겪고 계신 의뢰인분들을 위해 수임료 분할 납부 시스템을 운영하고 있습니다. 비용 때문에 망설이지 마시고 먼저 상담을 통해 해결책을 찾으시길 권장합니다.",
   },
 ];
 
 const officeInfo = [
-  "대표변호사 : 홍길동",
+  "대표변호사 : 김민석",
   "대한변호사협회 등록번호 : 제00000호",
   "주요 경력 : 도산·민사·채무조정 사건 다수 수행",
   "상담 방식 : 카카오톡 / 전화 / 방문 상담",
-  "위치 : 서울시 강남구 테헤란로 00, 0층",
+  "위치 : 서울시 서초구 서초대로42길 66 매일빌딩",
 ];
 
 const footerLinks = ["자가진단", "진행 절차", "개인회생 후기", "자주 묻는 질문"];
@@ -298,10 +298,6 @@ function toNumber(value) {
   if (value === null || value === undefined || value === "") return 0;
   const sanitized = String(value).replace(/[^0-9.]/g, "");
   return Number(sanitized || 0);
-}
-
-function formatWon(value) {
-  return `${Math.round(value || 0).toLocaleString("ko-KR")}원`;
 }
 
 function formatManwonFromWon(value) {
@@ -536,10 +532,11 @@ export default function Page() {
     <>
       <main className="min-h-screen bg-[#f7f8fa] text-slate-900">
         <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a5c00]">매일법률사무소</p>
-              <h1 className="mt-1 text-lg font-bold">개인회생 · 파산 상담신청 하기</h1>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a5c00]">
+                로가드 회생 / 국가채무조정제도
+              </p>
             </div>
 
             <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 lg:flex">
@@ -550,93 +547,73 @@ export default function Page() {
               <a href="#faq" className="hover:text-slate-900">Q&A</a>
             </nav>
 
-            <a
-              href={KAKAO_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-[#1f2937] px-5 py-3 text-sm font-bold text-white transition hover:bg-black"
-            >
-              카카오톡 상담
-            </a>
+            <div className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-900 shadow-sm">
+              매일법률사무소 로고
+            </div>
           </div>
         </header>
 
         <section id="intro" className="relative overflow-hidden border-b border-slate-200 bg-white">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(254,229,0,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.05),transparent_30%)]" />
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
+          <div className="relative mx-auto max-w-7xl px-6 py-20">
+            <div className="max-w-4xl">
               <div className="inline-flex rounded-full border border-[#f3e483] bg-[#fff9d9] px-4 py-2 text-sm font-semibold text-[#6d5600]">
-                개인회생 · 파산, 현재 상황에 맞는 절차부터 확인
+                30초 만에 확인해보세요!
               </div>
 
-              <h2 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-                개인회생 · 파산,
+              <h2 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+                내 대출금,
                 <br />
-                <span className="text-[#7a5c00]">현재 상황에 맞는 절차부터 확인</span>
+                얼마나 줄어드는지 알 수 있다고?
               </h2>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                소득, 채무, 재산 상태에 따라 진행 방향이 달라질 수 있습니다.
-                <br />
-                카카오톡 상담 또는 자격 자가진단으로 먼저 가능성을 확인해보세요.
+              <p className="mt-4 text-2xl font-extrabold leading-tight text-[#7a5c00] md:text-3xl">
+                국가채무조정제도 간편 자가진단 서비스
               </p>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <div className="mt-7 inline-flex flex-wrap items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-bold text-white">
+                <span>자가진단자 평균 예상 탕감율 57%</span>
+                <span className="text-slate-400">|</span>
+                <span>최대 95% 원금 탕감</span>
+              </div>
+
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
+                소득, 채무규모, 재산 여부에 따라 전략이 달라집니다.
+                <br />
+                우선 30초 자가진단으로 자격 요건부터 확인해보세요!
+              </p>
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <a
                   href={KAKAO_LINK}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-[28px] border border-slate-200 bg-white px-7 py-6 text-center text-base font-extrabold text-slate-900 shadow-lg shadow-slate-200 transition hover:-translate-y-0.5"
+                  className="rounded-[28px] border border-slate-200 bg-white px-7 py-6 text-center text-lg font-extrabold text-slate-900 shadow-lg shadow-slate-200 transition hover:-translate-y-0.5"
                 >
                   카카오톡 상담
                 </a>
+
                 <button
                   type="button"
                   onClick={openDiagnosisModal}
-                  className="rounded-[28px] bg-slate-900 px-7 py-6 text-center text-base font-extrabold text-white shadow-lg shadow-slate-200 transition hover:-translate-y-0.5 hover:bg-black"
+                  className="rounded-[28px] bg-slate-900 px-7 py-6 text-center text-lg font-extrabold text-white shadow-lg shadow-slate-200 transition hover:-translate-y-0.5 hover:bg-black"
                 >
-                  자격 자가진단
+                  채무탕감 자가진단
                 </button>
               </div>
 
-              <div className="mt-10 grid gap-3 sm:grid-cols-3">
-                {heroPoints.map((item) => (
-                  <div key={item} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                    <p className="text-sm leading-6 text-slate-700">{item}</p>
+              <div className="mt-12 grid gap-4 md:grid-cols-3">
+                {heroPoints.map((item, index) => (
+                  <div
+                    key={item}
+                    className="rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5 shadow-sm"
+                  >
+                    <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#fee500] text-sm font-extrabold text-slate-900">
+                      {index + 1}
+                    </div>
+                    <p className="text-sm leading-7 text-slate-700">{item}</p>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-md rounded-[32px] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-200">
-                <div className="rounded-[26px] bg-[#fee500] p-5">
-                  <p className="text-sm font-semibold text-slate-700">카카오톡 채널 상담 방법</p>
-                  <p className="mt-2 text-2xl font-extrabold leading-snug text-slate-900">
-                    1. 카카오톡 채널 접속
-                    <br />
-                    2. 현재 상황 간단히 남기기
-                    <br />
-                    3. 절차 가능성 안내 받기
-                  </p>
-                </div>
-
-                <div className="space-y-4 p-4">
-                  <div className="max-w-[82%] rounded-[24px] rounded-tl-md bg-slate-100 px-4 py-3 text-sm leading-6 text-slate-800">
-                    안녕하세요. 현재 소득, 대출, 재산 상태를 간단히 남겨주시면 먼저 확인해드릴게요.
-                  </div>
-                  <div className="ml-auto max-w-[82%] rounded-[24px] rounded-tr-md bg-[#fee500] px-4 py-3 text-sm leading-6 text-slate-900">
-                    신용대출과 담보대출이 섞여 있는데 개인회생이 가능한지 궁금합니다.
-                  </div>
-                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">1차 확인 내용</p>
-                    <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                      <li>• 현재 직업과 월평균 소득</li>
-                      <li>• 신용대출 / 담보대출 구조</li>
-                      <li>• 보유 자산과 차량 여부</li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -645,21 +622,22 @@ export default function Page() {
         <section className="border-y border-slate-200 bg-slate-950 text-white">
           <div className="mx-auto grid max-w-7xl gap-6 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">Kakao channel CTA</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]"></p>
               <h3 className="mt-3 text-4xl font-extrabold leading-tight">
-                지금 상황이 복잡할수록
-                <br />
-                먼저 방향부터 확인해보세요
+                혹시 나도 대출금을 줄일 수 있을까?
               </h3>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                개인회생과 파산은 월소득, 부양가족, 재산 구조에 따라 접근 방식이 달라질 수 있습니다.
+                매달 돌아오는 대출 원리금 상환으로
+                나와 사랑하는 가족의 생활이 
+                <br/> 
+                어려운 분이라면 이제 삶이 달라질 수 있습니다. 
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a href={KAKAO_LINK} target="_blank" rel="noreferrer" className="rounded-2xl bg-[#fee500] px-7 py-4 text-center text-sm font-bold text-slate-900">
-                  카카오톡 채널 상담하기
+                  카카오톡 빠른 상담
                 </a>
                 <button type="button" onClick={openDiagnosisModal} className="rounded-2xl border border-white/20 px-7 py-4 text-center text-sm font-bold text-white">
-                  자격 자가진단 시작하기
+                  30초 자가진단 시작
                 </button>
               </div>
             </div>
@@ -670,7 +648,7 @@ export default function Page() {
                 <div className="mt-4 space-y-3">
                   <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">직업과 월 평균 소득</div>
                   <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">혼인상태와 미성년 자녀 수</div>
-                  <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">차량가액, 대출 구조, 자산 구조</div>
+                  <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">자산 대비 부채 규모</div>
                 </div>
               </div>
             </div>
@@ -761,7 +739,7 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-6 py-20">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">Q&A</p>
-              <h3 className="mt-3 text-4xl font-extrabold tracking-tight">실제 상담 시 자주 묻는 질문</h3>
+              <h3 className="mt-3 text-4xl font-extrabold tracking-tight">개인회생, 자주 묻는 질문(FAQ)</h3>
             </div>
             <div className="mt-10 grid gap-6 lg:grid-cols-2">
               {faqItems.map((item) => (
@@ -822,7 +800,7 @@ export default function Page() {
                   카카오톡 채널 상담하기
                 </a>
                 <button type="button" onClick={openDiagnosisModal} className="rounded-2xl border border-white/15 px-7 py-4 text-center text-sm font-bold text-white">
-                  자격 자가진단 시작하기
+                  채무탕감 자가진단 시작하기
                 </button>
               </div>
             </div>
