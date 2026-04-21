@@ -792,12 +792,12 @@ export default function Page() {
                   지금 방향부터 먼저 확인하세요
                 </p>
                 <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                  복잡한 상황일수록
-                  <br />
-                  한 번에 이해되는 구조가 필요합니다
+                  혹시 나도 대출금을 줄일 수 있을까?
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 md:mx-0">
-                  모바일 화면에서 빠르게 읽히도록, 꼭 필요한 설명과 반복 CTA 중심으로 구조를 단순하게 정리했습니다.
+                  매달 돌아오는 대출 원리금 상환으로
+                  나와 사랑하는 가족의 생활이 어려운 분이라면 
+                  이제 삶이 달라질 수 있습니다. 
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
                   <CTAButton
@@ -895,7 +895,7 @@ export default function Page() {
               개인회생 후기
             </h3>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              후기 카드는 계속 흘러가며 보이도록 유지했습니다. 실제 이미지와 문구로 교체하면 바로 활용할 수 있습니다.
+              실제 진행하셨던 신청자분들의 생생한 후기!
             </p>
           </FadeInSection>
 
@@ -948,15 +948,15 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
             <FadeInSection className="rounded-[34px] bg-white/5 px-6 py-8 text-center backdrop-blur md:px-8 md:py-10">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
-                결과 확인 후 바로 상담 연결
+                결과 확인 후 즉시 담당자 배정
               </p>
               <h3 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                지금 내 상황이 해당되는지,
+                내 조건이 적합한지 자가진단 후,
                 <br />
-                먼저 가볍게 확인해보세요
+                전문 담당자와 함께 신청부터 결과까지
               </h3>
               <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300">
-                기능은 기존 그대로 유지하고, 모바일에서 더 빠르게 읽히는 구조로 바꾼 버전입니다.
+                신청 후 30분~1시간 이내 담당자가 유선 통화를 드립니다.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <CTAButton
@@ -984,13 +984,19 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-5 py-10 text-center md:px-6">
             <FadeInSection>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a5c00]">
-                Mobile optimized debt landing
+                로가드 회생 / 국가채무조정제도
               </p>
               <h4 className="mt-2 text-2xl font-extrabold text-slate-900">
-                개인회생 · 파산 상담 랜딩페이지
+                로가드 · 매일법률사무소 무료 법률상담
               </h4>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500">
-                대표번호, 회사명, 사업자 정보, 주소, 운영시간, 개인정보처리방침, 이용약관 링크를 실제 정보로 교체하면 됩니다.
+                상호명: 매일법률사무소 |대표자: 김민석 | 사업자등록번호: 489-04-02780
+                <br />
+                주소: 서울특별시 서초구 서초대로42길 66 매일빌딩
+                <br />
+                광고책임자: 김민석변호사 | 이메일 : doublestone.partners@gmail.com
+                <br />
+                copyright ⓒ 매일법률사무소 All Rights Reserved.
               </p>
             </FadeInSection>
 
