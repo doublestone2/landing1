@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import posthog from "posthog-js";
 
 const KAKAO_LINK = "http://pf.kakao.com/_CUPCX/chat";
 const REVIEW_PLACEHOLDER = "/reviews/review-placeholder.jpg";
@@ -162,7 +163,13 @@ function FadeInSection({
   );
 }
 
-function CTAButton({ href, onClick, variant = "yellow", children, full = false }) {
+function CTAButton({
+  href,
+  onClick,
+  variant = "yellow",
+  children,
+  full = false,
+}) {
   const base =
     "pressable inline-flex items-center justify-center rounded-[22px] px-6 py-4 text-center text-sm font-extrabold leading-none";
   const width = full ? "w-full" : "";
@@ -175,20 +182,30 @@ function CTAButton({ href, onClick, variant = "yellow", children, full = false }
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noreferrer" className={`${base} ${width} ${styles}`}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        onClick={onClick}
+        className={`${base} ${width} ${styles}`}
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <button type="button" onClick={onClick} className={`${base} ${width} ${styles}`}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`${base} ${width} ${styles}`}
+    >
       {children}
     </button>
   );
 }
 
-function StorySection({ section, onOpenDiagnosis }) {
+function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
   return (
     <div className="mx-auto max-w-4xl">
       <FadeInSection>
@@ -197,7 +214,7 @@ function StorySection({ section, onOpenDiagnosis }) {
             {section.eyebrow}
           </p>
 
-          <h3 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-4x2">
+          <h3 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-4xl">
             {section.title}
           </h3>
 
@@ -216,10 +233,20 @@ function StorySection({ section, onOpenDiagnosis }) {
           </FadeInSection>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <CTAButton href={KAKAO_LINK} variant="yellow">
+            <CTAButton
+              href={KAKAO_LINK}
+              variant="yellow"
+              onClick={() => onTrackCta("kakao_consult", sectionId)}
+            >
               카카오톡 상담
             </CTAButton>
-            <CTAButton onClick={onOpenDiagnosis} variant="diagnosis">
+            <CTAButton
+              onClick={() => {
+                onTrackCta("diagnosis_start", sectionId);
+                onOpenDiagnosis(sectionId);
+              }}
+              variant="diagnosis"
+            >
               채무탕감 자가진단
             </CTAButton>
           </div>
@@ -293,7 +320,8 @@ function getDiagnosisPayload(form) {
   const totalDebtWon = creditLoanWon + securedLoanWon;
   const realEstateValueWon = toNumber(form.realEstateValue) * 10000;
   const depositValueWon = toNumber(form.depositValue) * 10000;
-  const vehicleValueWon = form.hasVehicle === "있음" ? toNumber(form.vehicleValue) * 10000 : 0;
+  const vehicleValueWon =
+    form.hasVehicle === "있음" ? toNumber(form.vehicleValue) * 10000 : 0;
   const totalAssetsWon = realEstateValueWon + depositValueWon + vehicleValueWon;
   const childCount = form.maritalStatus === "기혼" ? Number(form.minorChildren || 0) : 0;
   const familySize = Math.max(
@@ -302,7 +330,10 @@ function getDiagnosisPayload(form) {
   );
   const minimumLivingCostWon =
     MINIMUM_LIVING_COST_2026[familySize] || MINIMUM_LIVING_COST_2026[7];
-  const monthlyDisposableIncomeWon = Math.max(0, monthlyIncomeWon - minimumLivingCostWon);
+  const monthlyDisposableIncomeWon = Math.max(
+    0,
+    monthlyIncomeWon - minimumLivingCostWon
+  );
   const expectedRepayment36Won = monthlyDisposableIncomeWon * 36;
   const estimatedInterestWon = totalDebtWon * 0.08 * 3;
   const totalClaimWon = totalDebtWon + estimatedInterestWon;
@@ -311,12 +342,15 @@ function getDiagnosisPayload(form) {
   const reductionRate = totalClaimWon > 0 ? (expectedReductionWon / totalClaimWon) * 100 : 0;
 
   const reasons = [];
-  if (["휴직", "무직"].includes(form.occupation))
+  if (["휴직", "무직"].includes(form.occupation)) {
     reasons.push("현재 직업이 휴직 또는 무직으로 선택되었습니다.");
-  if (monthlyIncomeWon < 1530000)
+  }
+  if (monthlyIncomeWon < 1530000) {
     reasons.push("월 평균 소득이 153만원 미만으로 입력되었습니다.");
-  if (totalAssetsWon > totalDebtWon)
+  }
+  if (totalAssetsWon > totalDebtWon) {
     reasons.push("총 보유자산이 총 채무보다 많은 것으로 입력되었습니다.");
+  }
 
   return {
     occupation: form.occupation,
@@ -350,8 +384,9 @@ function getCurrentStepValid(step, form) {
   if (step === 2) return toNumber(form.monthlyIncome) > 0;
   if (step === 3) {
     if (!form.maritalStatus) return false;
-    if (form.maritalStatus === "기혼")
+    if (form.maritalStatus === "기혼") {
       return form.minorChildren !== "" && form.minorChildren !== null;
+    }
     return true;
   }
   if (step === 4) {
@@ -394,6 +429,110 @@ export default function Page() {
   const diagnosis = useMemo(() => getDiagnosisPayload(form), [form]);
   const currentStepValid = getCurrentStepValid(step, form);
 
+  const posthogInitialized = useRef(false);
+  const enteredAtRef = useRef(new Map());
+  const diagnosisSourceRef = useRef("unknown");
+
+  const safeCapture = (eventName, properties = {}) => {
+    if (typeof window === "undefined") return;
+    if (!posthogInitialized.current) return;
+    try {
+      posthog.capture(eventName, properties);
+    } catch (error) {
+      console.error("PostHog capture error:", error);
+    }
+  };
+
+  const trackCtaClick = (ctaName, sectionId) => {
+    safeCapture("landing cta clicked", {
+      cta_name: ctaName,
+      section_id: sectionId,
+      current_url: window.location.pathname,
+    });
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (posthogInitialized.current) return;
+    if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return;
+
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host:
+        process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+      defaults: "2026-01-30",
+      capture_pageview: true,
+      capture_pageleave: true,
+      autocapture: true,
+    });
+
+    posthogInitialized.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!posthogInitialized.current) return;
+
+    const sections = Array.from(document.querySelectorAll("[data-section-id]"));
+    const enteredAt = enteredAtRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const now = Date.now();
+
+        entries.forEach((entry) => {
+          const sectionId = entry.target.getAttribute("data-section-id");
+          if (!sectionId) return;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            if (!enteredAt.has(sectionId)) {
+              enteredAt.set(sectionId, now);
+
+              safeCapture("landing section viewed", {
+                section_id: sectionId,
+                current_url: window.location.pathname,
+              });
+            }
+          } else if (enteredAt.has(sectionId)) {
+            const start = enteredAt.get(sectionId);
+            const dwell = now - start;
+
+            safeCapture("landing section exited", {
+              section_id: sectionId,
+              dwell_ms: dwell,
+              current_url: window.location.pathname,
+            });
+
+            enteredAt.delete(sectionId);
+          }
+        });
+      },
+      {
+        threshold: [0.3, 0.6],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    const flushVisibleSections = () => {
+      const now = Date.now();
+      enteredAt.forEach((start, sectionId) => {
+        safeCapture("landing section exited", {
+          section_id: sectionId,
+          dwell_ms: now - start,
+          current_url: window.location.pathname,
+        });
+      });
+      enteredAt.clear();
+    };
+
+    window.addEventListener("pagehide", flushVisibleSections);
+
+    return () => {
+      flushVisibleSections();
+      observer.disconnect();
+      window.removeEventListener("pagehide", flushVisibleSections);
+    };
+  }, []);
+
   useEffect(() => {
     if (!isModalOpen || step !== 7) return undefined;
 
@@ -415,7 +554,26 @@ export default function Page() {
     return () => clearInterval(timer);
   }, [isModalOpen, step]);
 
-  const openDiagnosisModal = () => {
+  useEffect(() => {
+    if (step === 8) {
+      safeCapture("diagnosis result viewed", {
+        source: diagnosisSourceRef.current,
+        suitable: diagnosis.suitable,
+        reduction_rate: Math.round(diagnosis.reductionRate || 0),
+        expected_reduction_won: diagnosis.expectedReductionWon || 0,
+        total_debt_won: diagnosis.totalDebtWon || 0,
+      });
+    }
+  }, [step, diagnosis]);
+
+  const openDiagnosisModal = (sourceSection = "unknown") => {
+    diagnosisSourceRef.current = sourceSection;
+
+    safeCapture("diagnosis started", {
+      source: sourceSection,
+      current_url: window.location.pathname,
+    });
+
     setForm({
       occupation: "",
       monthlyIncome: "",
@@ -436,6 +594,11 @@ export default function Page() {
   };
 
   const closeDiagnosisModal = () => {
+    safeCapture("diagnosis closed", {
+      current_step: step,
+      source: diagnosisSourceRef.current,
+    });
+
     setIsModalOpen(false);
     setStep(1);
     setProgress(0);
@@ -444,6 +607,11 @@ export default function Page() {
   };
 
   const nextStep = () => {
+    safeCapture("diagnosis step completed", {
+      step_number: step,
+      source: diagnosisSourceRef.current,
+    });
+
     if (step < 6) {
       setStep(step + 1);
       return;
@@ -454,12 +622,19 @@ export default function Page() {
   };
 
   const prevStep = () => {
-    if (step > 1 && step < 7) setStep(step - 1);
+    if (step > 1 && step < 7) {
+      safeCapture("diagnosis step back", {
+        step_number: step,
+        source: diagnosisSourceRef.current,
+      });
+      setStep(step - 1);
+    }
   };
 
   const handleConsultSubmit = async (e) => {
     e.preventDefault();
     if (!diagnosis.suitable) return;
+
     if (!consultation.name.trim() || !consultation.phone.trim()) {
       setSubmitMessage("이름과 전화번호를 입력해주세요.");
       return;
@@ -507,6 +682,13 @@ export default function Page() {
         throw new Error(data.message || "신청 전송에 실패했습니다.");
       }
 
+      safeCapture("consultation submitted", {
+        source: "diagnosis_result",
+        diagnosis_source: diagnosisSourceRef.current,
+        suitable: diagnosis.suitable,
+        reduction_rate: Math.round(diagnosis.reductionRate || 0),
+      });
+
       setSubmitMessage("상담신청이 정상적으로 접수되었습니다.");
       setConsultation({ name: "", phone: "" });
     } catch (error) {
@@ -539,7 +721,11 @@ export default function Page() {
           </div>
         </header>
 
-        <section id="intro" className="relative overflow-hidden bg-white">
+        <section
+          id="intro"
+          data-section-id="hero"
+          className="relative overflow-hidden bg-white"
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(254,229,0,0.28),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.05),transparent_28%)]" />
           <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-10 md:px-6 md:pb-20 md:pt-16">
             <div className="mx-auto max-w-4xl">
@@ -571,10 +757,22 @@ export default function Page() {
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:mx-auto sm:max-w-xl sm:grid-cols-2">
-                  <CTAButton href={KAKAO_LINK} variant="yellow" full>
+                  <CTAButton
+                    href={KAKAO_LINK}
+                    variant="yellow"
+                    full
+                    onClick={() => trackCtaClick("kakao_consult", "hero")}
+                  >
                     카카오톡 상담
                   </CTAButton>
-                  <CTAButton onClick={openDiagnosisModal} variant="diagnosis" full>
+                  <CTAButton
+                    onClick={() => {
+                      trackCtaClick("diagnosis_start", "hero");
+                      openDiagnosisModal("hero");
+                    }}
+                    variant="diagnosis"
+                    full
+                  >
                     채무탕감 자가진단
                   </CTAButton>
                 </div>
@@ -583,7 +781,10 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-950 text-white">
+        <section
+          data-section-id="trust"
+          className="border-y border-slate-200 bg-slate-950 text-white"
+        >
           <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
             <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
               <FadeInSection className="text-center md:text-left">
@@ -591,20 +792,29 @@ export default function Page() {
                   지금 방향부터 먼저 확인하세요
                 </p>
                 <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                  혹시 나도 대출금을 줄일 수 있을까?
+                  복잡한 상황일수록
                   <br />
+                  한 번에 이해되는 구조가 필요합니다
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 md:mx-0">
-                  매달 돌아오는 대출 원리금 상환으로
-                  나와 사랑하는 가족의 생활이 어려운 분이라면 
-                  이제 삶이 달라질 수 있습니다
+                  모바일 화면에서 빠르게 읽히도록, 꼭 필요한 설명과 반복 CTA 중심으로 구조를 단순하게 정리했습니다.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
-                  <CTAButton href={KAKAO_LINK} variant="yellow">
+                  <CTAButton
+                    href={KAKAO_LINK}
+                    variant="yellow"
+                    onClick={() => trackCtaClick("kakao_consult", "trust")}
+                  >
                     카카오톡 채널 상담하기
                   </CTAButton>
-                  <CTAButton onClick={openDiagnosisModal} variant="diagnosis">
-                    30초 자가진단 시작
+                  <CTAButton
+                    onClick={() => {
+                      trackCtaClick("diagnosis_start", "trust");
+                      openDiagnosisModal("trust");
+                    }}
+                    variant="diagnosis"
+                  >
+                    채무탕감 자가진단 시작하기
                   </CTAButton>
                 </div>
               </FadeInSection>
@@ -616,9 +826,15 @@ export default function Page() {
                 <div className="rounded-[24px] bg-white p-5 text-slate-900">
                   <p className="text-sm font-semibold text-slate-500">자가진단 확인 항목</p>
                   <div className="mt-4 space-y-3">
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">직업과 월 평균 소득</div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">혼인상태와 미성년 자녀 수</div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">자산 대비 부채 규모</div>
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                      직업과 월 평균 소득
+                    </div>
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                      혼인상태와 미성년 자녀 수
+                    </div>
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                      자산 대비 부채 규모
+                    </div>
                   </div>
                 </div>
               </FadeInSection>
@@ -626,26 +842,58 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-14 md:px-6 md:py-18">
-          <StorySection section={storySections[0]} onOpenDiagnosis={openDiagnosisModal} />
+        <section
+          data-section-id="story-1"
+          className="mx-auto max-w-7xl px-5 py-14 md:px-6 md:py-18"
+        >
+          <StorySection
+            section={storySections[0]}
+            sectionId="story-1"
+            onTrackCta={trackCtaClick}
+            onOpenDiagnosis={openDiagnosisModal}
+          />
         </section>
 
-        <section className="border-y border-slate-200 bg-white">
+        <section
+          data-section-id="story-2"
+          className="border-y border-slate-200 bg-white"
+        >
           <div className="mx-auto max-w-7xl px-5 py-14 md:px-6 md:py-18">
-            <StorySection section={storySections[1]} onOpenDiagnosis={openDiagnosisModal} />
+            <StorySection
+              section={storySections[1]}
+              sectionId="story-2"
+              onTrackCta={trackCtaClick}
+              onOpenDiagnosis={openDiagnosisModal}
+            />
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-white">
+        <section
+          data-section-id="story-3"
+          className="border-y border-slate-200 bg-white"
+        >
           <div className="mx-auto max-w-7xl px-5 py-14 md:px-6 md:py-18">
-            <StorySection section={storySections[2]} onOpenDiagnosis={openDiagnosisModal} />
+            <StorySection
+              section={storySections[2]}
+              sectionId="story-3"
+              onTrackCta={trackCtaClick}
+              onOpenDiagnosis={openDiagnosisModal}
+            />
           </div>
         </section>
 
-        <section id="reviews" className="mx-auto max-w-7xl px-5 py-16 text-center md:px-6 md:py-20">
+        <section
+          id="reviews"
+          data-section-id="reviews"
+          className="mx-auto max-w-7xl px-5 py-16 text-center md:px-6 md:py-20"
+        >
           <FadeInSection className="mx-auto mb-10 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">Reviews</p>
-            <h3 className="mt-3 text-4xl font-extrabold tracking-tight">개인회생 후기</h3>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+              Reviews
+            </p>
+            <h3 className="mt-3 text-4xl font-extrabold tracking-tight">
+              개인회생 후기
+            </h3>
             <p className="mt-4 text-lg leading-8 text-slate-600">
               후기 카드는 계속 흘러가며 보이도록 유지했습니다. 실제 이미지와 문구로 교체하면 바로 활용할 수 있습니다.
             </p>
@@ -654,7 +902,11 @@ export default function Page() {
           <FadeInSection delay={120} className="review-marquee text-left">
             <div className="review-marquee-track">
               {[0, 1].map((groupIndex) => (
-                <div className="review-marquee-group" key={groupIndex} aria-hidden={groupIndex === 1}>
+                <div
+                  className="review-marquee-group"
+                  key={groupIndex}
+                  aria-hidden={groupIndex === 1}
+                >
                   {reviewCards.map((item, index) => (
                     <div
                       key={`${groupIndex}-${index}`}
@@ -674,8 +926,12 @@ export default function Page() {
                         <div className="inline-flex rounded-full bg-[#fff7c2] px-3 py-1 text-xs font-bold text-[#6d5600]">
                           {item.name}
                         </div>
-                        <h4 className="mt-4 text-xl font-extrabold leading-snug">{item.title}</h4>
-                        <p className="mt-4 text-base leading-8 text-slate-600">{item.body}</p>
+                        <h4 className="mt-4 text-xl font-extrabold leading-snug">
+                          {item.title}
+                        </h4>
+                        <p className="mt-4 text-base leading-8 text-slate-600">
+                          {item.body}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -685,7 +941,10 @@ export default function Page() {
           </FadeInSection>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-950 text-white">
+        <section
+          data-section-id="final-cta"
+          className="border-y border-slate-200 bg-slate-950 text-white"
+        >
           <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
             <FadeInSection className="rounded-[34px] bg-white/5 px-6 py-8 text-center backdrop-blur md:px-8 md:py-10">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
@@ -700,10 +959,20 @@ export default function Page() {
                 기능은 기존 그대로 유지하고, 모바일에서 더 빠르게 읽히는 구조로 바꾼 버전입니다.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <CTAButton href={KAKAO_LINK} variant="yellow">
+                <CTAButton
+                  href={KAKAO_LINK}
+                  variant="yellow"
+                  onClick={() => trackCtaClick("kakao_consult", "final-cta")}
+                >
                   카카오톡 채널 상담하기
                 </CTAButton>
-                <CTAButton onClick={openDiagnosisModal} variant="diagnosis">
+                <CTAButton
+                  onClick={() => {
+                    trackCtaClick("diagnosis_start", "final-cta");
+                    openDiagnosisModal("final-cta");
+                  }}
+                  variant="diagnosis"
+                >
                   채무탕감 자가진단 시작하기
                 </CTAButton>
               </div>
@@ -721,13 +990,8 @@ export default function Page() {
                 개인회생 · 파산 상담 랜딩페이지
               </h4>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500">
-                상호명: 매일법률사무소 | 대표자: 김민석 | 사업자등록번호: 489-04-02780
-                <br />
-                주소 : 서울특별시 서초구 서초대로42길 66 매일빌딩
-                <br />
-                광고책임자 : 김민석변호사 | 이메일 : doublestone.partners@gmail.com
+                대표번호, 회사명, 사업자 정보, 주소, 운영시간, 개인정보처리방침, 이용약관 링크를 실제 정보로 교체하면 됩니다.
               </p>
-
             </FadeInSection>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -748,10 +1012,22 @@ export default function Page() {
 
         <div className="fixed bottom-4 left-1/2 z-50 w-[calc(100%-24px)] max-w-xl -translate-x-1/2">
           <div className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-2xl shadow-slate-200">
-            <CTAButton href={KAKAO_LINK} variant="yellow" full>
+            <CTAButton
+              href={KAKAO_LINK}
+              variant="yellow"
+              full
+              onClick={() => trackCtaClick("kakao_consult", "bottom-fixed")}
+            >
               카톡 상담
             </CTAButton>
-            <CTAButton onClick={openDiagnosisModal} variant="diagnosis" full>
+            <CTAButton
+              onClick={() => {
+                trackCtaClick("diagnosis_start", "bottom-fixed");
+                openDiagnosisModal("bottom-fixed");
+              }}
+              variant="diagnosis"
+              full
+            >
               자격 자가진단
             </CTAButton>
           </div>
@@ -775,7 +1051,9 @@ export default function Page() {
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
                         Self diagnosis
                       </p>
-                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">자격 자가진단</h3>
+                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
+                        자격 자가진단
+                      </h3>
                     </div>
                     <div className="rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
                       {step} / 8
@@ -802,7 +1080,9 @@ export default function Page() {
                           <StepOptionButton
                             key={option}
                             selected={form.occupation === option}
-                            onClick={() => setForm((prev) => ({ ...prev, occupation: option }))}
+                            onClick={() =>
+                              setForm((prev) => ({ ...prev, occupation: option }))
+                            }
                           >
                             {option}
                           </StepOptionButton>
@@ -820,7 +1100,9 @@ export default function Page() {
                         소득을 고려해 탕감액을 계산해요!
                       </p>
                       <div className="mt-8 rounded-[28px] border border-slate-200 bg-slate-50 p-5">
-                        <label className="block text-sm font-bold text-slate-700">월 평균 소득</label>
+                        <label className="block text-sm font-bold text-slate-700">
+                          월 평균 소득
+                        </label>
                         <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
                           <input
                             value={form.monthlyIncome}
@@ -879,7 +1161,10 @@ export default function Page() {
                                 key={count}
                                 selected={String(form.minorChildren) === String(count)}
                                 onClick={() =>
-                                  setForm((prev) => ({ ...prev, minorChildren: String(count) }))
+                                  setForm((prev) => ({
+                                    ...prev,
+                                    minorChildren: String(count),
+                                  }))
                                 }
                               >
                                 {count === 0 ? "없음" : `${count}명`}
@@ -919,7 +1204,9 @@ export default function Page() {
 
                       {form.hasVehicle === "있음" && (
                         <div className="mt-8 rounded-[28px] border border-slate-200 bg-slate-50 p-5">
-                          <label className="block text-sm font-bold text-slate-700">차량가액</label>
+                          <label className="block text-sm font-bold text-slate-700">
+                            차량가액
+                          </label>
                           <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
                             <input
                               value={form.vehicleValue}
@@ -1084,14 +1371,18 @@ export default function Page() {
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
                         Self diagnosis
                       </p>
-                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">조회중</h3>
+                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
+                        조회중
+                      </h3>
                     </div>
                     <div className="rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
                       7 / 8
                     </div>
                   </div>
                   <ProgressRing progress={progress} />
-                  <p className="mt-8 text-lg font-bold text-slate-900">잠시만 기다려주세요.</p>
+                  <p className="mt-8 text-lg font-bold text-slate-900">
+                    잠시만 기다려주세요.
+                  </p>
                   <p className="mt-3 text-base leading-8 text-slate-600">
                     나에게 맞는 정부제도와 탕감예상금액을 조회하고 있어요!
                   </p>
@@ -1108,7 +1399,9 @@ export default function Page() {
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
                         Diagnosis result
                       </p>
-                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">결과 요약</h3>
+                      <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
+                        결과 요약
+                      </h3>
                     </div>
                     <div className="rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700">
                       8 / 8
@@ -1116,7 +1409,8 @@ export default function Page() {
                   </div>
 
                   <h4 className="text-2xl font-extrabold text-slate-900">
-                    고객님의 결과 요약 <span className="text-slate-500">{resultDate} 기준</span>
+                    고객님의 결과 요약{" "}
+                    <span className="text-slate-500">{resultDate} 기준</span>
                   </h4>
 
                   {diagnosis.suitable ? (
@@ -1158,7 +1452,9 @@ export default function Page() {
                             </p>
                           </div>
                           <div className="rounded-2xl bg-slate-50 p-5">
-                            <p className="text-sm font-bold text-slate-500">36개월 예상 총변제금</p>
+                            <p className="text-sm font-bold text-slate-500">
+                              36개월 예상 총변제금
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.expectedTotalRepaymentWon)}
                             </p>
@@ -1179,7 +1475,9 @@ export default function Page() {
                             </p>
                           </div>
 
-                          <div className="flex items-center justify-center text-4xl text-slate-300">↓</div>
+                          <div className="flex items-center justify-center text-4xl text-slate-300">
+                            ↓
+                          </div>
 
                           <div className="rounded-2xl bg-[#fffdf0] p-5">
                             <p className="text-sm font-bold text-slate-500">예상 총변제금</p>
@@ -1203,11 +1501,16 @@ export default function Page() {
                         </h5>
                         <form onSubmit={handleConsultSubmit} className="mt-6 space-y-4">
                           <div>
-                            <label className="mb-2 block text-sm font-bold text-slate-700">이름</label>
+                            <label className="mb-2 block text-sm font-bold text-slate-700">
+                              이름
+                            </label>
                             <input
                               value={consultation.name}
                               onChange={(e) =>
-                                setConsultation((prev) => ({ ...prev, name: e.target.value }))
+                                setConsultation((prev) => ({
+                                  ...prev,
+                                  name: e.target.value,
+                                }))
                               }
                               placeholder="이름을 입력해주세요"
                               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-sm outline-none transition focus:border-slate-900"
@@ -1237,7 +1540,9 @@ export default function Page() {
                             {isSubmitting ? "전송중..." : "상담신청 보내기"}
                           </button>
                           {submitMessage ? (
-                            <p className="text-sm font-semibold text-slate-700">{submitMessage}</p>
+                            <p className="text-sm font-semibold text-slate-700">
+                              {submitMessage}
+                            </p>
                           ) : null}
                         </form>
                       </div>
@@ -1277,14 +1582,23 @@ export default function Page() {
                           안내
                         </p>
                         <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-                          <p>입력한 정보는 1차 자동진단 기준이며 실제 사건은 추가 사실관계에 따라 달라질 수 있습니다.</p>
-                          <p>현재 구조상 자동 신청은 열리지 않지만, 소득 구조나 채무 상황이 달라지면 결과가 달라질 수 있습니다.</p>
-                          <p>정확한 검토가 필요하다면 카카오톡 채널로 현재 상황을 남겨주고 별도 상담을 받아보는 편이 좋습니다.</p>
+                          <p>
+                            입력한 정보는 1차 자동진단 기준이며 실제 사건은 추가 사실관계에 따라 달라질 수 있습니다.
+                          </p>
+                          <p>
+                            현재 구조상 자동 신청은 열리지 않지만, 소득 구조나 채무 상황이 달라지면 결과가 달라질 수 있습니다.
+                          </p>
+                          <p>
+                            정확한 검토가 필요하다면 카카오톡 채널로 현재 상황을 남겨주고 별도 상담을 받아보는 편이 좋습니다.
+                          </p>
                         </div>
                         <a
                           href={KAKAO_LINK}
                           target="_blank"
                           rel="noreferrer"
+                          onClick={() =>
+                            trackCtaClick("kakao_consult", "diagnosis_unsuitable")
+                          }
                           className="pressable mt-6 inline-flex rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
                         >
                           카카오톡으로 별도 상담하기
@@ -1296,7 +1610,12 @@ export default function Page() {
                   <div className="mt-8 flex justify-between gap-3">
                     <button
                       type="button"
-                      onClick={() => setStep(1)}
+                      onClick={() => {
+                        safeCapture("diagnosis restarted", {
+                          source: diagnosisSourceRef.current,
+                        });
+                        setStep(1);
+                      }}
                       className="pressable rounded-2xl border border-slate-300 px-5 py-4 text-sm font-bold text-slate-700"
                     >
                       다시 진단하기
