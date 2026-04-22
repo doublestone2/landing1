@@ -1718,14 +1718,15 @@ export default function Page() {
                     <div className="mt-8 space-y-6">
                       <div className="rounded-[30px] border border-red-100 bg-red-50 p-6">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">
-                          부적합
+                          [부적합] 변호사 상담 필요
                         </p>
-                        <h5 className="mt-3 text-3xl font-extrabold leading-tight text-slate-900">
-                          부적합하여 상담신청이 불가합니다.
+                        <h5 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900">
+                          유선 및 카카오톡 상담 신청 부탁드립니다.
                         </h5>
-                        <p className="mt-4 text-base leading-8 text-slate-700">
-                          현재 입력한 정보 기준으로는 본 페이지의 개인회생 예상
-                          계산 구조와 맞지 않아 자동 신청으로 연결되지 않습니다.
+                        <p className="mt-2 text-base leading-8 text-slate-700">
+                          기입하신 내용만으로는 개인회생이 기각될 수 있는 부분이 확인되어
+                          <br />
+                          전문가의 상담이 필요해 보입니다.
                         </p>
                       </div>
 
@@ -1751,16 +1752,10 @@ export default function Page() {
                         </p>
                         <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
                           <p>
-                            입력한 정보는 1차 자동진단 기준이며 실제 사건은 추가
-                            사실관계에 따라 달라질 수 있습니다.
+                            위 결과는 입력하신 정보 기준 1차 예상치이며, 자세한 금액은 전문가 상담 및 자료에 따라 달라질 수 있습니다.
                           </p>
                           <p>
-                            현재 구조상 자동 신청은 열리지 않지만, 소득 구조나 채무
-                            상황이 달라지면 결과가 달라질 수 있습니다.
-                          </p>
-                          <p>
-                            정확한 검토가 필요하다면 카카오톡 채널로 현재 상황을
-                            남겨주고 별도 상담을 받아보는 편이 좋습니다.
+                            부적합이 나오더라도 의뢰자의 상황에 따라 신청 가능한 경우도 있으니 카카오톡 채널로 상담 바랍니다.
                           </p>
                         </div>
                         <a
@@ -1772,7 +1767,7 @@ export default function Page() {
                           }
                           className="pressable mt-6 inline-flex rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
                         >
-                          카카오톡으로 별도 상담하기
+                          카카오톡 상담하기
                         </a>
                       </div>
                     </div>
