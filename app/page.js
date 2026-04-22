@@ -7,8 +7,8 @@ const KAKAO_LINK = "http://pf.kakao.com/_CUPCX/chat";
 const REVIEW_PLACEHOLDER = "/reviews/review-placeholder.jpg";
 
 // 아래 3개는 실제 링크로 바꿔주세요
-const LAWFIRM_SITE_LINK = "https://your-lawfirm-site.com";
-const NAVER_CAFE_LINK = "https://cafe.naver.com/yourcafe";
+const LAWFIRM_SITE_LINK = "https://xn--9z2b2xi4aba940lua.com/";
+const NAVER_CAFE_LINK = "https://cafe.naver.com/coincheating";
 const INSTAGRAM_LINK = "https://instagram.com/yourprofile";
 
 // 아래 3개는 실제 아이콘 이미지 경로로 바꿔주세요
@@ -147,19 +147,19 @@ const reviewCards = [
 
 const footerIconLinks = [
   {
-    title: "우리 로펌 사이트 바로가기",
+    title: "매일법률사무소",
     href: LAWFIRM_SITE_LINK,
     image: LAWFIRM_ICON,
     alt: "로펌 사이트 바로가기",
   },
   {
-    title: "우리 카페 바로가기",
+    title: "로가드 카페",
     href: NAVER_CAFE_LINK,
     image: NAVER_CAFE_ICON,
     alt: "네이버 카페 바로가기",
   },
   {
-    title: "인스타 프로필 바로가기",
+    title: "로가드 인스타그램",
     href: INSTAGRAM_LINK,
     image: INSTAGRAM_ICON,
     alt: "인스타 프로필 바로가기",
@@ -789,23 +789,36 @@ export default function Page() {
   return (
     <>
       <main className="min-h-screen bg-[#f8f8f6] text-slate-900">
-        <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-6">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7a5c00]">
-                로가드 회생 / 국가채무조정제도
-              </p>
-            </div>
+           <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+  <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-3 md:py-3">
+    <div className="flex flex-col items-start">
+      <img
+        src="/head/head01.png"
+        alt="로가드 로고"
+        className="h-[42px] w-auto object-contain md:h-[140px]"
+      />
 
-            <div className="flex items-center justify-end">
-              <img
-                src="/head/head01.jpg"
-                alt="매일법률사무소 로고"
-                className="h-[38px] w-auto object-contain md:h-[48px]"
-              />
-            </div>
-          </div>
-        </header>
+    </div>
+
+      <p
+  className="mt-0 text-[12px] font-black uppercase tracking-[0.1em] text-[#8a6a10] md:text-[30px]"
+  style={{
+    textShadow:
+      "65 65px 65 rgba(255,255,255,0.95), 65 65px 65 rgba(221,192,108,0.5), 20 150px 150px rgba(60,42,6,0.28)",
+  }}
+>
+  로가드 회생 ㅣ 국가 채무조정제도
+</p>
+
+    <div className="flex items-center justify-end">
+      <img
+        src="/head/head02.png"
+        alt="매일법률사무소 로고"
+        className="h-[34px] w-auto object-contain md:h-[45px]"
+      />
+    </div>
+  </div>
+</header>
 
         <section
           id="intro"
