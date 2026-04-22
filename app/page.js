@@ -550,24 +550,7 @@ function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
 </div>
           </FadeInSection>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <CTAButton
-              href={KAKAO_LINK}
-              variant="yellow"
-              onClick={() => onTrackCta("kakao_consult", sectionId)}
-            >
-              카카오톡 상담
-            </CTAButton>
-            <CTAButton
-              onClick={() => {
-                onTrackCta("diagnosis_start", sectionId);
-                onOpenDiagnosis(sectionId);
-              }}
-              variant="diagnosis"
-            >
-              채무탕감 자가진단
-            </CTAButton>
-          </div>
+          
         </div>
       </FadeInSection>
     </div>
