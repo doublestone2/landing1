@@ -6,6 +6,16 @@ import posthog from "posthog-js";
 const KAKAO_LINK = "http://pf.kakao.com/_CUPCX/chat";
 const REVIEW_PLACEHOLDER = "/reviews/review-placeholder.jpg";
 
+// 아래 3개는 실제 링크로 바꿔주세요
+const LAWFIRM_SITE_LINK = "https://your-lawfirm-site.com";
+const NAVER_CAFE_LINK = "https://cafe.naver.com/yourcafe";
+const INSTAGRAM_LINK = "https://instagram.com/yourprofile";
+
+// 아래 3개는 실제 아이콘 이미지 경로로 바꿔주세요
+const LAWFIRM_ICON = "/icons/lawfirm-link.png";
+const NAVER_CAFE_ICON = "/icons/naver-cafe-link.png";
+const INSTAGRAM_ICON = "/icons/instagram-link.png";
+
 const MEDIAN_INCOME_2026 = {
   1: 2564238,
   2: 4199292,
@@ -35,7 +45,9 @@ const storySections = [
       <>
         매년 10만명 이상의 분들이 이 제도로
         <br />
-        대출금 부담을 <span className="text-[#7a5c00] text-[1.08em]">확!</span> 줄이고 있습니다.
+        대출금 부담을{" "}
+        <span className="text-[#7a5c00] text-[1.08em]">확!</span> 줄이고
+        있습니다.
       </>
     ),
     desc:
@@ -46,90 +58,113 @@ const storySections = [
     eyebrow: "매달 선착순 30명만 접수 받아 정확하고 빠르게 진행합니다.",
     title: (
       <>
-      국가제도를 100% 활용하실 수 있도록
-      <br />
-      전문 변호사가 전략을 설계합니다.
+        국가제도를 100% 활용하실 수 있도록
+        <br />
+        전문 변호사가 전략을 설계합니다.
       </>
     ),
-    desc:
-      "서류만 모아 단순 접수하는 타업체와는 다르게 최고의 결과를 만드는 것을 목표로 각 개인별 스토리를 만들고 법원별로 전략을 세분화 해서 제공합니다.",
+    desc: (
+      <>
+        서류만 모아 단순 접수하는 타업체와는 다르게 최고의 결과를 만드는 것을 목표로
+        <br />
+        각 개인별 스토리를 만들고 법원별로 전략을 세분화 해서 제공합니다.
+      </>
+    ),
     image: "/sections/section02.jpg",
   },
   {
     eyebrow: (
       <>
-      우리는 의뢰인의
-      <br />
-      재정 안정이 최우선 입니다.
-      </> 
-    ), 
-    title: "많은 분들이 기회를 놓치지 않도록 부담을 낮추고 빠르게 진행해드립니다",
-    desc:
-      "로가드는 어려우신 분들을 위해 금융조합을 만들어 장기 분납제도를 운영하고 일정 채권자 수 내에서는 비용을 추가로 붙이지 않습니다. (최대 5곳까지)",
+        우리는 의뢰인의
+        <br />
+        재정 안정이 최우선 입니다.
+      </>
+    ),
+    title: (
+      <>
+        많은 분들이 기회를 놓치지 않도록
+        <br />
+        부담을 낮추고 빠르게 진행해드립니다
+      </>
+    ),
+    desc: (
+      <>
+        로가드는 어려우신 분들을 위해 금융조합을 만들어 장기 분납제도를 운영하고
+        <br />
+        일정 채권자 수 내에서는 비용을 추가로 붙이지 않습니다.
+        <br />
+        (최대 5곳까지)
+      </>
+    ),
     image: "/sections/section03.jpg",
   },
 ];
 
 const reviewCards = [
   {
-    name: "32세 직장인",
-    title: "카카오톡으로 먼저 상황을 정리하니 훨씬 덜 막막했습니다",
+    name: "김 * 연 님 37세 직장인 ",
+    title: "카드 돌려막기 3년, 이젠 진짜 숨쉴 수 있어요",
     body:
-      "전화보다 메시지 상담이 편해서 부담이 적었고, 필요한 자료를 먼저 알려줘서 준비가 쉬웠습니다.",
+      "처음엔 전화할 용기도 안 나서 카톡으로 문의했는데, 생각보다 편하게 얘기할 수 있었어요. 전화 상담까지 이어졌고, 월급이 320만원인데 원리금만 200 넘게 나가던 상황이었거든요. 지금은 매달 45만원씩만 갚으면 돼서 진짜 살 것 같습니다.",
     image: "/reviews/review-01.jpg",
   },
   {
-    name: "41세 자영업자",
-    title: "신용대출과 담보대출이 섞여 있었는데 구분해서 봐줘서 좋았습니다",
+    name: "최 * 철 님 47세 자영업자(자녀2)",
+    title: "코로나 때 빌린 대출이 눈덩이처럼 불어나 막막했습니다...",
     body:
-      "복잡하게 섞여 있는 줄만 알았는데 구조를 나눠 설명해주니 다음 단계를 이해하기 쉬웠습니다.",
+      "가게 문 닫고 나서 은행 4곳, 카드 3장에 9,000만원 가까이 빚이 있었습니다. 혼자 알아볼 땐 '나 같은 사람은 안 되겠지' 싶었는데, 일단 자가진단이라도 해보시길. 저도 반포기 상태로 했다가 상담까지 이어지고 지금은 빚 1000만원만 남았고 월 27만원만 내고 있어서 새로 출발한 느낌입니다. 정말 감사합니다.ㅠ",
     image: "/reviews/review-02.jpg",
   },
   {
-    name: "29세 프리랜서",
-    title: "부양가족 기준이 결과에 어떤 영향을 주는지 이해가 됐어요",
+    name: "이 * 선 님 28세 사회초년생",
+    title: "부모님한테 말 못 하고 혼자 끙끙 앓다가…",
     body:
-      "그냥 대략 계산하는 게 아니라 월소득과 가족 수 기준으로 설명해줘서 더 신뢰가 갔습니다.",
+      "학자금이랑 생활비 대출, 카드대출이 쌓여서 첫 월급부터 이자 내느라 모으는 게 없이 생활이 안됐어요. 코인투자로 날린 금액이라 부모님께 말씀드리기도 죄송해서 혼자 끙끙댔는데, 로가드에서 편하게 물어볼 수 있어서 쉽게 시작할 수 있었습니다. 수임료가 아깝다고 느꼈는데 수십배 금액인 수천을 지워주신거니 오히려 벌었다고 생각듭니다.. 다시는 욕심내지 않겠습니다. 감사합니다. ",
     image: "/reviews/review-03.jpg",
   },
   {
-    name: "37세 직장인",
-    title: "차량이 있어도 어떻게 반영되는지 먼저 설명받아 안심됐습니다",
+    name: "김 * 아 님 35세 워킹맘",
+    title: "아이에게 좋은 옷을 사주지 못해 미안했어요",
     body:
-      "차량 때문에 무조건 안 되는 줄 알았는데, 어떤 부분을 봐야 하는지 차분히 안내받았습니다.",
+      "이혼하고 혼자 아이 키우면서 대출이 눈덩이처럼 불어나서 막막 했어요.. 혼자 알아볼 때 몰랐던 부분을 자세하게 짚어 주시고 챙겨 주셔서 편하게 탕감을 받을 수 있었습니다. 이제 월급 받아서 아이에게 더 쓸 수 있어서 너무 행복합니다. 감사합니다.",
     image: "/reviews/review-04.jpg",
   },
   {
-    name: "45세 자영업자",
-    title: "재산과 보증금 부분까지 따로 나눠 보니까 이해가 빨랐습니다",
+    name: "강 * 준 45세 직장인 가장 ",
+    title: "정말 다 포기하고 마지막으로 알아본...",
     body:
-      "막연히 자산이 있다고만 생각했는데 항목별로 보니 어떤 게 중요한지 알 수 있었습니다.",
+      "사업이 망하고 가족을 지켜보겠다고 대출을 더 끌어다 쓴 게 더 버틸 수 없는 지경에 이르렀었어요. 취직해서 월급을 받아와도 가족보다는 은행, 카드사로 빠져나가는 게 80% 였습니다.. 아이들이 자라서 돈 쓸 일이 더 많아지니 정말 다 포기하고 싶었습니다. 로가드 아니였다면 저는 방법도 모른체로 인생이 끝났을 수도 있었습니다. 정말 너무 감사드립니다. 다시 잘 살아보겠습니다.",
     image: "/reviews/review-05.jpg",
   },
   {
-    name: "34세 회사원",
-    title: "절차가 길게만 느껴졌는데 단계별로 나눠 보니 현실적이었습니다",
+    name: "박 * 성 53세 자영업자 ",
+    title: "가게 정리를 고민하며 있던 와중에...",
     body:
-      "서류검토부터 법원 절차까지 한 번에 보여줘서 상담 전에 훨씬 덜 불안했습니다.",
+      "가게 사업하면서 사채도 많이 써보고 금융사 대출은 쓰고 갚고 한 세월이 벌써 10년이 넘었습니다. 그러다 요즘 재료 값도 비싸 지고 장사가 잘 안되다 보니 빚을 갚지 못하고 있었습니다. 연체되고 가압류 걸리고.. 가게도 폐업하면 돈이 더 들어서 못하고 있었는데 로가드 상담 받고 수임한 후 2개월만에 연체이자 다 없애고, 원금도 80% 이상을 줄일 수 있었습니다. 정말 올해 제일 잘한 일 같습니다.",
     image: "/reviews/review-06.jpg",
-  },
-  {
-    name: "39세 자영업자",
-    title: "비대면으로 먼저 진단해보고 상담까지 이어지니 편했습니다",
-    body:
-      "자가진단으로 먼저 기준을 보고 나니까 실제 상담 때 질문도 훨씬 명확하게 할 수 있었습니다.",
-    image: "/reviews/review-07.jpg",
-  },
-  {
-    name: "27세 사회초년생",
-    title: "혼자 찾아볼 때보다 훨씬 명확하게 방향이 잡혔습니다",
-    body:
-      "소득이 낮아서 어려울 줄 알았는데 먼저 가능성과 기준부터 구분해줘서 좋았습니다.",
-    image: "/reviews/review-08.jpg",
   },
 ];
 
-const footerLinks = ["자가진단", "후기", "상담신청"];
+const footerIconLinks = [
+  {
+    title: "우리 로펌 사이트 바로가기",
+    href: LAWFIRM_SITE_LINK,
+    image: LAWFIRM_ICON,
+    alt: "로펌 사이트 바로가기",
+  },
+  {
+    title: "우리 카페 바로가기",
+    href: NAVER_CAFE_LINK,
+    image: NAVER_CAFE_ICON,
+    alt: "네이버 카페 바로가기",
+  },
+  {
+    title: "인스타 프로필 바로가기",
+    href: INSTAGRAM_LINK,
+    image: INSTAGRAM_ICON,
+    alt: "인스타 프로필 바로가기",
+  },
+];
 
 const loadingMessages = [
   "월소득과 부양가족 수를 확인하고 있어요.",
@@ -189,7 +224,7 @@ function CTAButton({
   full = false,
 }) {
   const base =
-    "pressable inline-flex items-center justify-center rounded-[22px] px-6 py-4 text-center text-sm font-extrabold leading-none";
+    "pressable inline-flex min-h-[68px] items-center justify-center rounded-[24px] px-7 py-5 text-center text-[17px] font-extrabold leading-none md:min-h-[72px] md:px-8 md:py-5 md:text-[18px]";
   const width = full ? "w-full" : "";
   const styles =
     variant === "yellow"
@@ -223,34 +258,56 @@ function CTAButton({
   );
 }
 
+function FooterIconLink({ href, image, alt, title }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="pressable flex w-full max-w-[210px] flex-col items-center justify-center rounded-[24px] border border-slate-200 bg-white px-5 py-5 text-center"
+    >
+      <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
+        <img
+          src={image}
+          alt={alt}
+          className="h-full w-full object-contain"
+        />
+      </div>
+      <p className="mt-4 text-[14px] font-bold leading-6 text-slate-700">
+        {title}
+      </p>
+    </a>
+  );
+}
+
 function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
   return (
     <div className="mx-auto max-w-4xl">
       <FadeInSection>
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+          <p className="text-sm font-semibold uppercase leading-[1.8] tracking-[0.18em] text-[#7a5c00]">
             {section.eyebrow}
           </p>
 
-          <h3 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-4x2">
+          <h3 className="mt-4 text-3xl font-extrabold leading-[1.28] tracking-tight text-slate-900 md:text-4xl">
             {section.title}
           </h3>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.95] text-slate-600">
             {section.desc}
           </p>
 
           <FadeInSection delay={120}>
-            <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <div className="mx-auto mt-9 max-w-3xl overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
               <img
                 src={section.image}
-                alt={section.title}
+                alt={typeof section.title === "string" ? section.title : "섹션 이미지"}
                 className="h-[220px] w-full object-cover md:h-[320px]"
               />
             </div>
           </FadeInSection>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <CTAButton
               href={KAKAO_LINK}
               variant="yellow"
@@ -336,22 +393,31 @@ function getDiagnosisPayload(form) {
   const creditLoanWon = toNumber(form.creditLoan) * 10000;
   const securedLoanWon = toNumber(form.securedLoan) * 10000;
   const totalDebtWon = creditLoanWon + securedLoanWon;
-  const realEstateValueWon = toNumber(form.realEstateValue) * 10000;
-  const depositValueWon = toNumber(form.depositValue) * 10000;
+
+  const realEstateValueWon =
+    form.assetsStatus === "있음" ? toNumber(form.realEstateValue) * 10000 : 0;
+  const depositValueWon =
+    form.assetsStatus === "있음" ? toNumber(form.depositValue) * 10000 : 0;
+
   const vehicleValueWon =
     form.hasVehicle === "있음" ? toNumber(form.vehicleValue) * 10000 : 0;
+
   const totalAssetsWon = realEstateValueWon + depositValueWon + vehicleValueWon;
   const childCount = form.maritalStatus === "기혼" ? Number(form.minorChildren || 0) : 0;
+
   const familySize = Math.max(
     1,
     Math.min(7, 1 + (form.maritalStatus === "기혼" ? 1 : 0) + childCount)
   );
+
   const minimumLivingCostWon =
     MINIMUM_LIVING_COST_2026[familySize] || MINIMUM_LIVING_COST_2026[7];
+
   const monthlyDisposableIncomeWon = Math.max(
     0,
     monthlyIncomeWon - minimumLivingCostWon
   );
+
   const expectedRepayment36Won = monthlyDisposableIncomeWon * 36;
   const estimatedInterestWon = totalDebtWon * 0.08 * 3;
   const totalClaimWon = totalDebtWon + estimatedInterestWon;
@@ -377,6 +443,7 @@ function getDiagnosisPayload(form) {
     minorChildren: childCount,
     hasVehicle: form.hasVehicle,
     vehicleValueWon,
+    assetsStatus: form.assetsStatus,
     creditLoanWon,
     securedLoanWon,
     totalDebtWon,
@@ -399,7 +466,7 @@ function getDiagnosisPayload(form) {
 
 function getCurrentStepValid(step, form) {
   if (step === 1) return !!form.occupation;
-  if (step === 2) return toNumber(form.monthlyIncome) > 0;
+  if (step === 2) return true;
   if (step === 3) {
     if (!form.maritalStatus) return false;
     if (form.maritalStatus === "기혼") {
@@ -408,12 +475,10 @@ function getCurrentStepValid(step, form) {
     return true;
   }
   if (step === 4) {
-    if (!form.hasVehicle) return false;
-    if (form.hasVehicle === "있음") return toNumber(form.vehicleValue) > 0;
-    return true;
+    return !!form.hasVehicle;
   }
-  if (step === 5) return toNumber(form.creditLoan) > 0 || toNumber(form.securedLoan) > 0;
-  if (step === 6) return toNumber(form.realEstateValue) > 0 || toNumber(form.depositValue) > 0;
+  if (step === 5) return true;
+  if (step === 6) return !!form.assetsStatus;
   return true;
 }
 
@@ -440,6 +505,7 @@ export default function Page() {
     vehicleValue: "",
     creditLoan: "",
     securedLoan: "",
+    assetsStatus: "",
     realEstateValue: "",
     depositValue: "",
   });
@@ -601,6 +667,7 @@ export default function Page() {
       vehicleValue: "",
       creditLoan: "",
       securedLoan: "",
+      assetsStatus: "",
       realEstateValue: "",
       depositValue: "",
     });
@@ -674,6 +741,7 @@ export default function Page() {
             minorChildren: diagnosis.minorChildren,
             hasVehicle: diagnosis.hasVehicle,
             vehicleValueWon: diagnosis.vehicleValueWon,
+            assetsStatus: diagnosis.assetsStatus,
             creditLoanWon: diagnosis.creditLoanWon,
             securedLoanWon: diagnosis.securedLoanWon,
             totalDebtWon: diagnosis.totalDebtWon,
@@ -745,26 +813,26 @@ export default function Page() {
           className="relative overflow-hidden bg-white"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(254,229,0,0.28),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.05),transparent_28%)]" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-10 md:px-6 md:pb-20 md:pt-16">
+          <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 md:px-6 md:pb-20 md:pt-16">
             <div className="mx-auto max-w-4xl">
               <FadeInSection className="text-center">
-                <div className="inline-flex rounded-full border border-[#f3e483] bg-[#fff9d9] px-4 py-2 text-sm font-semibold text-[#6d5600]">
+                <div className="inline-flex rounded-full border border-[#f3e483] bg-[#fff9d9] px-6 py-3 text-[15px] font-semibold text-[#6d5600] md:px-7 md:py-3.5 md:text-base">
                   30초 만에 확인해보세요!
                 </div>
 
-                <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] tracking-tight text-slate-900 md:text-6xl">
+                <h1 className="mt-7 text-4xl font-extrabold leading-[1.2] tracking-tight text-slate-900 md:text-6xl">
                   내 대출금,
                   <br />
                   얼마나 줄일 수 있을까?
                 </h1>
 
-                <p className="mt-4 text-2xl font-extrabold leading-tight text-[#7a5c00] md:text-3xl">
+                <p className="mt-5 text-2xl font-extrabold leading-[1.35] text-[#7a5c00] md:text-3xl">
                   국가 채무조정 제도
                   <br />
                   무료 자가진단 서비스
                 </p>
 
-                <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-bold text-white">
+                <div className="mt-7 inline-flex flex-wrap items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-bold text-white md:px-7 md:py-4">
                   <span>이자 100% 탕감</span>
                   <span className="text-slate-400">|</span>
                   <span>원금 최대 95% 탕감 가능</span>
@@ -772,13 +840,13 @@ export default function Page() {
                   <span>자가 진단자 평균 60% 이상 탕감</span>
                 </div>
 
-                <p className="mt-6 text-lg leading-8 text-slate-600">
+                <p className="mt-7 text-lg leading-[1.9] text-slate-600">
                   빛을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
                   <br />
-                  먼저 30초 자가진단으로 자격부터 확인해보세요
+                  우선 30초 자가진단으로 자격부터 확인해보세요!
                 </p>
 
-                <div className="mt-8 grid gap-3 sm:mx-auto sm:max-w-xl sm:grid-cols-2">
+                <div className="mt-9 grid gap-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-2">
                   <CTAButton
                     href={KAKAO_LINK}
                     variant="yellow"
@@ -807,23 +875,24 @@ export default function Page() {
           data-section-id="trust"
           className="border-y border-slate-200 bg-slate-950 text-white"
         >
-          <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
+          <div className="mx-auto max-w-7xl px-5 py-10 md:px-6">
             <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
               <FadeInSection className="text-center md:text-left">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
+                <p className="text-[15px] font-semibold uppercase tracking-[0.18em] text-[#fee500] md:text-base">
                   이번 기회를 놓치지 마세요
                 </p>
-                <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
+                <h2 className="mt-4 text-3xl font-extrabold leading-[1.25] md:text-4xl">
                   혹시 나도
                   <br />
                   대출금을 줄일 수 있을까?
                 </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 md:mx-0">
+                <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.9] text-slate-300 md:mx-0">
                   매달 돌아오는 상환일이 두려우셨나요?
                   <br />
                   이제 나자신과 가족 앞에서 당당해질 때입니다.
                 </p>
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
+
+                <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
                   <CTAButton
                     href={KAKAO_LINK}
                     variant="yellow"
@@ -845,18 +914,18 @@ export default function Page() {
 
               <FadeInSection
                 delay={120}
-                className="rounded-[28px] border border-white/10 bg-white/5 p-5 text-center backdrop-blur"
+                className="rounded-[28px] border border-white/10 bg-white/5 p-2 text-center backdrop-blur"
               >
                 <div className="rounded-[24px] bg-white p-5 text-slate-900">
                   <p className="text-sm font-semibold text-slate-500">자가진단 확인 항목</p>
                   <div className="mt-4 space-y-3">
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
                       직업과 월 평균 소득
                     </div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
                       혼인상태와 미성년 자녀 수
                     </div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm">
+                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
                       자산 대비 부채 규모
                     </div>
                   </div>
@@ -915,11 +984,15 @@ export default function Page() {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
               실제 이용자 후기
             </p>
-            <h3 className="mt-3 text-4xl font-extrabold tracking-tight">
-              로가드 회생은 의뢰인의 삶에 집중합니다.
+            <h3 className="mt-4 text-4xl font-extrabold tracking-tight leading-[1.28]">
+              로가드 회생은
+              <br />
+              의뢰인의 삶에 집중합니다.
             </h3>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
-              이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고 새로운 인생을 출발하셨습니다.
+            <p className="mt-5 text-lg leading-[1.9] text-slate-600">
+              이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고
+              <br />
+              <span className="text-[#7a5c00] text-[1.5em]">새로운 인생을 출발하셨습니다.</span>
             </p>
           </FadeInSection>
 
@@ -974,20 +1047,21 @@ export default function Page() {
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
                 진단 후 전문가 상담 추천
               </p>
-              <h3 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                자격 요건이 된다면 전문가 무료 상담을 통해 희망을 현실로 만드세요
+              <h3 className="mt-4 text-3xl font-extrabold leading-[1.28] md:text-4xl">
+                자격 요건이 된다면 전문가 무료 상담을 통해
                 <br />
-                전문 담당자와 함께 신청부터 결과까지
+                <span className="text-[#fee500] text-[1.14em]">희망을 현실로 만드세요</span>
+                <br />
               </h3>
-              <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300">
+              <p className="mx-auto mt-5 max-w-3xl text-base leading-[1.9] text-slate-300">
                 자가진단 30초
-                 <br />
-                 전문가 무료상담 5분
+                <br />
+                전문가 무료상담 5분
                 <br />
                 <br />
-                용기있는 선택은 인생을 바꿉니다
+                <span className="text-[#fee500] text-[1.18em]">용기 있는 선택은 인생을 바꿉니다.</span>
               </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
+              <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <CTAButton
                   href={KAKAO_LINK}
                   variant="yellow"
@@ -1019,22 +1093,27 @@ export default function Page() {
                 로가드 · 매일법률사무소 무료 법률상담
               </h4>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500">
-                상호명: 매일법률사무소 |대표자: 김민석 | 사업자등록번호: 489-04-02780
+                상호명: 매일법률사무소 | 대표자: 김민석 | 사업자등록번호:
+                489-04-02780
                 <br />
                 주소: 서울특별시 서초구 서초대로42길 66 매일빌딩
                 <br />
-                광고책임자: 김민석변호사 | 이메일 : doublestone.partners@gmail.com
+                광고책임자: 김민석변호사 | 이메일 :
+                doublestone.partners@gmail.com
                 <br />
                 copyright ⓒ 매일법률사무소 All Rights Reserved.
               </p>
             </FadeInSection>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {footerLinks.map((item, index) => (
-                <FadeInSection key={item} delay={index * 70}>
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-600">
-                    {item}
-                  </span>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              {footerIconLinks.map((item, index) => (
+                <FadeInSection key={item.title} delay={index * 70}>
+                  <FooterIconLink
+                    href={item.href}
+                    image={item.image}
+                    alt={item.alt}
+                    title={item.title}
+                  />
                 </FadeInSection>
               ))}
             </div>
@@ -1105,7 +1184,7 @@ export default function Page() {
                   {step === 1 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        현재 어떤 일을 
+                        현재 어떤 일을
                         <br />
                         하고 계신가요?
                       </h4>
@@ -1225,7 +1304,7 @@ export default function Page() {
                         가지고 계신가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                      리스/렌탈은 아니에요!
+                        리스/렌탈은 아니에요!
                       </p>
                       <div className="mt-8 grid gap-3 sm:grid-cols-2">
                         {YES_NO.map((option) => (
@@ -1339,56 +1418,79 @@ export default function Page() {
                         얼마인가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                        대략적인 금액도 괜찮아요.
+                        자산이 있다면 대략적인 금액도 괜찮아요.
                         <br />
-                        자산 항목을 나눠 입력해주세요.
-                        </p>
-                      <div className="mt-8 grid gap-4">
-                        <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5">
-                          <label className="block text-sm font-bold text-slate-700">
-                            본인명의 소유 부동산 시세 금액
-                          </label>
-                          <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
-                            <input
-                              value={form.realEstateValue}
-                              onChange={(e) =>
-                                setForm((prev) => ({
-                                  ...prev,
-                                  realEstateValue: e.target.value.replace(/[^0-9]/g, ""),
-                                }))
-                              }
-                              inputMode="numeric"
-                              placeholder="예: 5000"
-                              className="w-full bg-transparent text-lg font-bold outline-none"
-                            />
-                            <span className="shrink-0 whitespace-nowrap text-base font-bold text-slate-500">
-                              만원
-                            </span>
-                          </div>
-                        </div>
-                        <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5">
-                          <label className="block text-sm font-bold text-slate-700">
-                            전세 혹은 월세 보증금 금액
-                          </label>
-                          <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
-                            <input
-                              value={form.depositValue}
-                              onChange={(e) =>
-                                setForm((prev) => ({
-                                  ...prev,
-                                  depositValue: e.target.value.replace(/[^0-9]/g, ""),
-                                }))
-                              }
-                              inputMode="numeric"
-                              placeholder="예: 1000"
-                              className="w-full bg-transparent text-lg font-bold outline-none"
-                            />
-                            <span className="shrink-0 whitespace-nowrap text-base font-bold text-slate-500">
-                              만원
-                            </span>
-                          </div>
-                        </div>
+                        먼저 자산 보유 여부를 선택해주세요.
+                      </p>
+
+                      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                        {YES_NO.map((option) => (
+                          <StepOptionButton
+                            key={option}
+                            selected={form.assetsStatus === option}
+                            onClick={() =>
+                              setForm((prev) => ({
+                                ...prev,
+                                assetsStatus: option,
+                                realEstateValue: option === "있음" ? prev.realEstateValue : "",
+                                depositValue: option === "있음" ? prev.depositValue : "",
+                              }))
+                            }
+                          >
+                            자산 {option}
+                          </StepOptionButton>
+                        ))}
                       </div>
+
+                      {form.assetsStatus === "있음" && (
+                        <div className="mt-8 grid gap-4">
+                          <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5">
+                            <label className="block text-sm font-bold text-slate-700">
+                              본인명의 소유 부동산 시세 금액
+                            </label>
+                            <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
+                              <input
+                                value={form.realEstateValue}
+                                onChange={(e) =>
+                                  setForm((prev) => ({
+                                    ...prev,
+                                    realEstateValue: e.target.value.replace(/[^0-9]/g, ""),
+                                  }))
+                                }
+                                inputMode="numeric"
+                                placeholder="예: 5000"
+                                className="w-full bg-transparent text-lg font-bold outline-none"
+                              />
+                              <span className="shrink-0 whitespace-nowrap text-base font-bold text-slate-500">
+                                만원
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5">
+                            <label className="block text-sm font-bold text-slate-700">
+                              전세 혹은 월세 보증금 금액
+                            </label>
+                            <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
+                              <input
+                                value={form.depositValue}
+                                onChange={(e) =>
+                                  setForm((prev) => ({
+                                    ...prev,
+                                    depositValue: e.target.value.replace(/[^0-9]/g, ""),
+                                  }))
+                                }
+                                inputMode="numeric"
+                                placeholder="예: 1000"
+                                className="w-full bg-transparent text-lg font-bold outline-none"
+                              />
+                              <span className="shrink-0 whitespace-nowrap text-base font-bold text-slate-500">
+                                만원
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -1460,7 +1562,6 @@ export default function Page() {
                   <h4 className="text-2xl font-extrabold text-slate-900">
                     고객님의 결과 요약
                     <br />
-                    {" "}
                     <span className="text-slate-500">{resultDate} 기준</span>
                   </h4>
 
@@ -1474,10 +1575,12 @@ export default function Page() {
                           예상 탕감액
                           <br />
                           <br />
-                          총 {formatManwonFromWon(diagnosis.expectedReductionWon)}을 줄일 수 있어요!
+                          총 {formatManwonFromWon(diagnosis.expectedReductionWon)}
+                          을 줄일 수 있어요!
                         </h5>
                         <p className="mt-4 text-base leading-8 text-slate-600">
-                          위 결과는 입력하신 정보 기준 1차 예상치이며, 자세한 금액은 전문가 상담 및 자료에 따라 달라질 수 있습니다.
+                          위 결과는 입력하신 정보 기준 1차 예상치이며, 자세한 금액은
+                          전문가 상담 및 자료에 따라 달라질 수 있습니다.
                         </p>
                       </div>
 
@@ -1498,7 +1601,9 @@ export default function Page() {
                             </p>
                           </div>
                           <div className="rounded-2xl bg-slate-50 p-5">
-                            <p className="text-sm font-bold text-slate-500">월 변제 가능금액</p>
+                            <p className="text-sm font-bold text-slate-500">
+                              월 변제 가능금액
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.monthlyDisposableIncomeWon)}
                             </p>
@@ -1521,7 +1626,9 @@ export default function Page() {
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.totalDebtWon)}
                             </p>
-                            <p className="mt-4 text-sm font-bold text-slate-500">이자(3년 8%)</p>
+                            <p className="mt-4 text-sm font-bold text-slate-500">
+                              이자(3년 8%)
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.estimatedInterestWon)}
                             </p>
@@ -1532,11 +1639,17 @@ export default function Page() {
                           </div>
 
                           <div className="rounded-2xl bg-[#fffdf0] p-5">
-                            <p className="text-sm font-bold text-slate-500">예상 총변제금</p>
-                            <p className="mt-2 text-2xl font-extrabold text-slate-900">
-                              {formatManwonFromWon(diagnosis.expectedTotalRepaymentWon)}
+                            <p className="text-sm font-bold text-slate-500">
+                              예상 총변제금
                             </p>
-                            <p className="mt-4 text-sm font-bold text-slate-500">예상 탕감률</p>
+                            <p className="mt-2 text-2xl font-extrabold text-slate-900">
+                              {formatManwonFromWon(
+                                diagnosis.expectedTotalRepaymentWon
+                              )}
+                            </p>
+                            <p className="mt-4 text-sm font-bold text-slate-500">
+                              예상 탕감률
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-[#7a5c00]">
                               {Math.round(diagnosis.reductionRate)}%
                             </p>
@@ -1611,7 +1724,8 @@ export default function Page() {
                           부적합하여 상담신청이 불가합니다.
                         </h5>
                         <p className="mt-4 text-base leading-8 text-slate-700">
-                          현재 입력한 정보 기준으로는 본 페이지의 개인회생 예상 계산 구조와 맞지 않아 자동 신청으로 연결되지 않습니다.
+                          현재 입력한 정보 기준으로는 본 페이지의 개인회생 예상
+                          계산 구조와 맞지 않아 자동 신청으로 연결되지 않습니다.
                         </p>
                       </div>
 
@@ -1637,13 +1751,16 @@ export default function Page() {
                         </p>
                         <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
                           <p>
-                            입력한 정보는 1차 자동진단 기준이며 실제 사건은 추가 사실관계에 따라 달라질 수 있습니다.
+                            입력한 정보는 1차 자동진단 기준이며 실제 사건은 추가
+                            사실관계에 따라 달라질 수 있습니다.
                           </p>
                           <p>
-                            현재 구조상 자동 신청은 열리지 않지만, 소득 구조나 채무 상황이 달라지면 결과가 달라질 수 있습니다.
+                            현재 구조상 자동 신청은 열리지 않지만, 소득 구조나 채무
+                            상황이 달라지면 결과가 달라질 수 있습니다.
                           </p>
                           <p>
-                            정확한 검토가 필요하다면 카카오톡 채널로 현재 상황을 남겨주고 별도 상담을 받아보는 편이 좋습니다.
+                            정확한 검토가 필요하다면 카카오톡 채널로 현재 상황을
+                            남겨주고 별도 상담을 받아보는 편이 좋습니다.
                           </p>
                         </div>
                         <a
