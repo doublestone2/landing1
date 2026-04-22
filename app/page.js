@@ -30,24 +30,42 @@ const CHILD_OPTIONS = [0, 1, 2, 3, 4];
 
 const storySections = [
   {
-    eyebrow: "혹시 나도 해당될까?",
-    title: "매년 많은 분들이 정부제도를 통해 대출 부담을 줄이고 있습니다",
+    eyebrow: "국가가 운영하는 채무조정제도",
+    title: (
+      <>
+        매년 10만명 이상의 분들이 이 제도로
+        <br />
+        대출금 부담을 <span className="text-[#7a5c00] text-[1.08em]">확!</span> 줄이고 있습니다.
+      </>
+    ),
     desc:
-      "혼자 알아보기 어려운 채무 상황도 현재 소득과 보유 재산, 부양가족 구조를 기준으로 먼저 방향을 잡아볼 수 있습니다.",
+      "자격요건이 된다는 건 큰 혜택입니다. 지금 바로 자격을 확인하세요.",
     image: "/sections/section01.jpg",
   },
   {
-    eyebrow: "가장 높은 탕감율을 위해",
-    title: "내 소득과 채무 상황을 분석해 더 유리한 방향을 찾습니다",
+    eyebrow: "매달 선착순 30명만 접수 받아 정확하고 빠르게 진행합니다.",
+    title: (
+      <>
+      국가제도를 100% 활용하실 수 있도록
+      <br />
+      전문 변호사가 전략을 설계합니다.
+      </>
+    ),
     desc:
-      "막연한 희망보다 현재 기준에 맞는 현실적인 전략이 중요합니다. 월소득, 자산 규모, 가족 수를 함께 고려해 예상 결과를 보여줍니다.",
+      "서류만 모아 단순 접수하는 타업체와는 다르게 최고의 결과를 만드는 것을 목표로 각 개인별 스토리를 만들고 법원별로 전략을 세분화 해서 제공합니다.",
     image: "/sections/section02.jpg",
   },
   {
-    eyebrow: "직접 만든 이유",
-    title: "도움이 필요한 분들이 기회를 놓치지 않도록 쉽게 만들었습니다",
+    eyebrow: (
+      <>
+      우리는 의뢰인의
+      <br />
+      재정 안정이 최우선 입니다.
+      </> 
+    ), 
+    title: "많은 분들이 기회를 놓치지 않도록 부담을 낮추고 빠르게 진행해드립니다",
     desc:
-      "복잡한 제도를 어렵게 설명하는 대신, 지금 필요한 정보만 빠르게 확인하고 바로 상담으로 이어질 수 있도록 구조를 단순화했습니다.",
+      "로가드는 어려우신 분들을 위해 금융조합을 만들어 장기 분납제도를 운영하고 일정 채권자 수 내에서는 비용을 추가로 붙이지 않습니다. (최대 5곳까지)",
     image: "/sections/section03.jpg",
   },
 ];
@@ -214,7 +232,7 @@ function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
             {section.eyebrow}
           </p>
 
-          <h3 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-4xl">
+          <h3 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-4x2">
             {section.title}
           </h3>
 
@@ -737,23 +755,27 @@ export default function Page() {
                 <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] tracking-tight text-slate-900 md:text-6xl">
                   내 대출금,
                   <br />
-                  얼마나 줄어드는지 알 수 있다고?
+                  얼마나 줄일 수 있을까?
                 </h1>
 
                 <p className="mt-4 text-2xl font-extrabold leading-tight text-[#7a5c00] md:text-3xl">
-                  국가채무조정제도 간편 자가진단 서비스
+                  국가 채무조정 제도
+                  <br />
+                  무료 자가진단 서비스
                 </p>
 
                 <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-bold text-white">
-                  <span>자가진단자 평균 예상 탕감율 57%</span>
+                  <span>이자 100% 탕감</span>
                   <span className="text-slate-400">|</span>
-                  <span>최대 95% 원금 탕감</span>
+                  <span>원금 최대 95% 탕감 가능</span>
+                  <span className="text-slate-400">|</span>
+                  <span>자가 진단자 평균 60% 이상 탕감</span>
                 </div>
 
                 <p className="mt-6 text-lg leading-8 text-slate-600">
-                  소득, 채무규모, 재산 여부에 따라 전략이 달라집니다.
+                  빛을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
                   <br />
-                  우선 30초 자가진단으로 자격 요건부터 확인해보세요!
+                  먼저 30초 자가진단으로 자격부터 확인해보세요
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:mx-auto sm:max-w-xl sm:grid-cols-2">
@@ -789,15 +811,17 @@ export default function Page() {
             <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
               <FadeInSection className="text-center md:text-left">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
-                  지금 방향부터 먼저 확인하세요
+                  이번 기회를 놓치지 마세요
                 </p>
                 <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                  혹시 나도 대출금을 줄일 수 있을까?
+                  혹시 나도
+                  <br />
+                  대출금을 줄일 수 있을까?
                 </h2>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 md:mx-0">
-                  매달 돌아오는 대출 원리금 상환으로
-                  나와 사랑하는 가족의 생활이 어려운 분이라면 
-                  이제 삶이 달라질 수 있습니다. 
+                  매달 돌아오는 상환일이 두려우셨나요?
+                  <br />
+                  이제 나자신과 가족 앞에서 당당해질 때입니다.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
                   <CTAButton
@@ -889,13 +913,13 @@ export default function Page() {
         >
           <FadeInSection className="mx-auto mb-10 max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-              Reviews
+              실제 이용자 후기
             </p>
             <h3 className="mt-3 text-4xl font-extrabold tracking-tight">
-              개인회생 후기
+              로가드 회생은 의뢰인의 삶에 집중합니다.
             </h3>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              실제 진행하셨던 신청자분들의 생생한 후기!
+              이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고 새로운 인생을 출발하셨습니다.
             </p>
           </FadeInSection>
 
@@ -948,15 +972,20 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
             <FadeInSection className="rounded-[34px] bg-white/5 px-6 py-8 text-center backdrop-blur md:px-8 md:py-10">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
-                결과 확인 후 즉시 담당자 배정
+                진단 후 전문가 상담 추천
               </p>
               <h3 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                내 조건이 적합한지 자가진단 후,
+                자격 요건이 된다면 전문가 무료 상담을 통해 희망을 현실로 만드세요
                 <br />
                 전문 담당자와 함께 신청부터 결과까지
               </h3>
               <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-300">
-                신청 후 30분~1시간 이내 담당자가 유선 통화를 드립니다.
+                자가진단 30초
+                 <br />
+                 전문가 무료상담 5분
+                <br />
+                <br />
+                용기있는 선택은 인생을 바꿉니다
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <CTAButton
@@ -1055,7 +1084,7 @@ export default function Page() {
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                        Self diagnosis
+                        국가 채무조정 제도
                       </p>
                       <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
                         자격 자가진단
@@ -1076,10 +1105,12 @@ export default function Page() {
                   {step === 1 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        현재 어떤 일을 하고 계신가요?
+                        현재 어떤 일을 
+                        <br />
+                        하고 계신가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                        직업에 따라 유리한 제도가 달라져요!
+                        소득 유형에 따라 전략이 달라져요!
                       </p>
                       <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
                         {OCCUPATIONS.map((option) => (
@@ -1100,7 +1131,9 @@ export default function Page() {
                   {step === 2 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        월 평균 소득은 어느 정도 인가요?
+                        월 평균 소득은
+                        <br />
+                        어느 정도 인가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
                         소득을 고려해 탕감액을 계산해요!
@@ -1133,10 +1166,12 @@ export default function Page() {
                   {step === 3 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        현재 혼인상태를 알려주세요
+                        현재 혼인상태를
+                        <br />
+                        알려주세요
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                        맞춤형 제도를 찾아드려요!
+                        부양가족 최저 생계비 계산해드려요
                       </p>
                       <div className="mt-8 grid gap-3 sm:grid-cols-2">
                         {MARITAL_OPTIONS.map((option) => (
@@ -1185,10 +1220,12 @@ export default function Page() {
                   {step === 4 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        본인명의 차량이 있으신가요?
+                        본인 명의 차량을
+                        <br />
+                        가지고 계신가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                        정확한 탕감액 계산에 필요해요!
+                      리스/렌탈은 아니에요!
                       </p>
                       <div className="mt-8 grid gap-3 sm:grid-cols-2">
                         {YES_NO.map((option) => (
@@ -1211,7 +1248,7 @@ export default function Page() {
                       {form.hasVehicle === "있음" && (
                         <div className="mt-8 rounded-[28px] border border-slate-200 bg-slate-50 p-5">
                           <label className="block text-sm font-bold text-slate-700">
-                            차량가액
+                            차량가액 (대략적으로)
                           </label>
                           <div className="mt-3 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-4">
                             <input
@@ -1238,7 +1275,9 @@ export default function Page() {
                   {step === 5 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        현재 총 대출 금액은 얼마인가요?
+                        현재 총 대출 금액은
+                        <br />
+                        얼마인가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
                         신용대출과 담보대출을 나눠 입력해주세요.
@@ -1295,11 +1334,15 @@ export default function Page() {
                   {step === 6 && (
                     <div>
                       <h4 className="text-3xl font-extrabold leading-tight text-slate-900">
-                        총 보유자산은 얼마인가요?
+                        총 보유자산은
+                        <br />
+                        얼마인가요?
                       </h4>
                       <p className="mt-3 text-base leading-7 text-slate-600">
-                        대략적인 금액도 괜찮아요. 자산 항목을 나눠 입력해주세요.
-                      </p>
+                        대략적인 금액도 괜찮아요.
+                        <br />
+                        자산 항목을 나눠 입력해주세요.
+                        </p>
                       <div className="mt-8 grid gap-4">
                         <div className="rounded-[28px] border border-slate-200 bg-slate-50 p-5">
                           <label className="block text-sm font-bold text-slate-700">
@@ -1375,7 +1418,7 @@ export default function Page() {
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                        Self diagnosis
+                        국가 채무조정 제도
                       </p>
                       <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
                         조회중
@@ -1403,7 +1446,7 @@ export default function Page() {
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                        Diagnosis result
+                        국가 채무조정 제도
                       </p>
                       <h3 className="mt-2 text-3xl font-extrabold tracking-tight">
                         결과 요약
@@ -1415,7 +1458,9 @@ export default function Page() {
                   </div>
 
                   <h4 className="text-2xl font-extrabold text-slate-900">
-                    고객님의 결과 요약{" "}
+                    고객님의 결과 요약
+                    <br />
+                    {" "}
                     <span className="text-slate-500">{resultDate} 기준</span>
                   </h4>
 
@@ -1428,10 +1473,11 @@ export default function Page() {
                         <h5 className="mt-3 text-3xl font-extrabold leading-tight text-slate-900">
                           예상 탕감액
                           <br />
+                          <br />
                           총 {formatManwonFromWon(diagnosis.expectedReductionWon)}을 줄일 수 있어요!
                         </h5>
                         <p className="mt-4 text-base leading-8 text-slate-600">
-                          아래 결과는 입력한 정보 기준의 1차 예상치이며, 실제 사건은 추가 자료와 사실관계 검토에 따라 달라질 수 있습니다.
+                          위 결과는 입력하신 정보 기준 1차 예상치이며, 자세한 금액은 전문가 상담 및 자료에 따라 달라질 수 있습니다.
                         </p>
                       </div>
 
@@ -1500,10 +1546,12 @@ export default function Page() {
 
                       <div className="rounded-[30px] border border-slate-200 bg-slate-50 p-6">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                          상담신청
+                          축하합니다 !
                         </p>
                         <h5 className="mt-3 text-2xl font-extrabold text-slate-900">
-                          적합 결과가 나왔다면 바로 상담신청을 남겨주세요
+                          적합 결과가 나오신 분들은 로펌 전문가 상담을 통해
+                          <br />
+                          희망을 현실로 만드세요!
                         </h5>
                         <form onSubmit={handleConsultSubmit} className="mt-6 space-y-4">
                           <div>
