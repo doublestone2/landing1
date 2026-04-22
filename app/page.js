@@ -1042,7 +1042,7 @@ export default function Page() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f8f8f6] text-slate-900">
+      <main className="min-h-screen bg-[#f8f8f6] text-slate-900 [word-break:keep-all] [overflow-wrap:break-word]">
         <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-3 md:py-3">
             <div className="flex flex-col items-start">
