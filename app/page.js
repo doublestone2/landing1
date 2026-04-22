@@ -38,16 +38,19 @@ const MARITAL_OPTIONS = ["미혼", "기혼"];
 const YES_NO = ["있음", "없음"];
 const CHILD_OPTIONS = [0, 1, 2, 3, 4];
 
+function PcBr() {
+  return <br className="hidden md:block" />;
+}
+
 const storySections = [
   {
     eyebrow: "국가가 운영하는 채무조정제도",
     title: (
       <>
         매년 10만명 이상의 분들이 이 제도로
-        <br />
+        <PcBr />
         대출금 부담을{" "}
-        <span className="text-[#7a5c00] text-[1.08em]">확!</span> 줄이고
-        있습니다.
+        <span className="text-[#7a5c00] text-[1.08em]">확!</span> 줄이고 있습니다.
       </>
     ),
     desc:
@@ -59,14 +62,14 @@ const storySections = [
     title: (
       <>
         국가제도를 100% 활용하실 수 있도록
-        <br />
+        <PcBr />
         전문 변호사가 전략을 설계합니다.
       </>
     ),
     desc: (
       <>
         서류만 모아 단순 접수하는 타업체와는 다르게 최고의 결과를 만드는 것을 목표로
-        <br />
+        <PcBr />
         각 개인별 스토리를 만들고 법원별로 전략을 세분화 해서 제공합니다.
       </>
     ),
@@ -76,23 +79,23 @@ const storySections = [
     eyebrow: (
       <>
         우리는 의뢰인의
-        <br />
+        <PcBr />
         재정 안정이 최우선 입니다.
       </>
     ),
     title: (
       <>
         많은 분들이 기회를 놓치지 않도록
-        <br />
+        <PcBr />
         부담을 낮추고 빠르게 진행해드립니다
       </>
     ),
     desc: (
       <>
         로가드는 어려우신 분들을 위해 금융조합을 만들어 장기 분납제도를 운영하고
-        <br />
+        <PcBr />
         일정 채권자 수 내에서는 비용을 추가로 붙이지 않습니다.
-        <br />
+        <PcBr />
         (최대 5곳까지)
       </>
     ),
@@ -309,50 +312,50 @@ function ResultSupportCards({ onTrackCta }) {
           다른 어려움 확인
         </p>
 
-        <h5 className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900">
+        <h5
+          className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900 break-keep"
+          style={{ textWrap: "balance" }}
+        >
           혹시, 다른 어려움도 있으신가요?
         </h5>
 
-        <p className="mt-4 text-sm leading-7 text-slate-600">
+        <p
+          className="mt-4 text-sm leading-7 text-slate-600 break-keep"
+          style={{ textWrap: "pretty" }}
+        >
           채무 문제 외에도 혼자 감당하시기 어려운 일이 있으실 수 있습니다.
-          <br />
+          <PcBr />
           조심스럽게, 여쭤봅니다.
         </p>
 
         <div className="mt-5 space-y-3 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
           <label className="flex items-start gap-3">
             <input type="checkbox" disabled className="mt-1 h-4 w-4" />
-            <span>
-              보이스피싱·리딩방·코인·투자 사기로 재산 피해를 입으셨나요?
-            </span>
+            <span>보이스피싱·리딩방·코인·투자 사기로 재산 피해를 입으셨나요?</span>
           </label>
 
           <label className="flex items-start gap-3">
             <input type="checkbox" disabled className="mt-1 h-4 w-4" />
-            <span>
-              불법 사채나 대부업체의 과도한 추심에 시달리고 계신가요?
-            </span>
+            <span>불법 사채나 대부업체의 과도한 추심에 시달리고 계신가요?</span>
           </label>
 
           <label className="flex items-start gap-3">
             <input type="checkbox" disabled className="mt-1 h-4 w-4" />
-            <span>
-              전세 사기나 보증금 반환 문제로 어려움을 겪고 계신가요?
-            </span>
+            <span>전세 사기나 보증금 반환 문제로 어려움을 겪고 계신가요?</span>
           </label>
 
           <label className="flex items-start gap-3">
             <input type="checkbox" disabled className="mt-1 h-4 w-4" />
-            <span>
-              이혼·가사 문제, 형사 사건 등 다른 법률적 도움이 필요하신가요?
-            </span>
+            <span>이혼·가사 문제, 형사 사건 등 다른 법률적 도움이 필요하신가요?</span>
           </label>
         </div>
 
-        <p className="mt-5 text-sm leading-7 text-slate-600">
-          매일법률사무소는 채무조정 외에도 다양한 영역에서 의뢰인을 도와드리고
-          있습니다.
-          <br />
+        <p
+          className="mt-5 text-sm leading-7 text-slate-600 break-keep"
+          style={{ textWrap: "pretty" }}
+        >
+          매일법률사무소는 채무조정 외에도 다양한 영역에서 의뢰인을 도와드리고 있습니다.
+          <PcBr />
           어떤 상황이든, 먼저 말씀만 주시면 조심스럽게 함께 살펴보겠습니다.
         </p>
 
@@ -374,28 +377,31 @@ function ResultSupportCards({ onTrackCta }) {
           로가드 카페 안내
         </p>
 
-        <h5 className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900">
+        <h5
+          className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900 break-keep"
+          style={{ textWrap: "balance" }}
+        >
           혼자 고민하지 마세요.
-          <br />
+          <PcBr />
           로가드가 여러분의 삶을 지켜드립니다.
         </h5>
 
         <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
-          <p>
+          <p className="break-keep" style={{ textWrap: "pretty" }}>
             바로 상담이 부담스러우시다면, 로가드 카페에서 비슷한 상황을 겪으신
-            <br />
+            <PcBr />
             다른 분들의 이야기와 해결 사례를 먼저 확인해 보실 수 있어요.
           </p>
 
-          <p>
+          <p className="break-keep" style={{ textWrap: "pretty" }}>
             개인회생·파산, 사기 피해 대응, 불법 추심 해결까지
-            <br />
+            <PcBr />
             실제 경험과 도움이 되는 정보가 모여 있습니다.
           </p>
 
-          <p>
+          <p className="break-keep" style={{ textWrap: "pretty" }}>
             생각보다 많은 분들이 같은 길을 걸어오셨고,
-            <br />
+            <PcBr />
             지금은 웃으며 과거를 돌아보고 계십니다.
           </p>
         </div>
@@ -528,29 +534,36 @@ function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
     <div className="mx-auto max-w-4xl">
       <FadeInSection>
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase leading-[1.8] tracking-[0.18em] text-[#7a5c00]">
+          <p
+            className="text-sm font-semibold uppercase leading-[1.8] tracking-[0.18em] text-[#7a5c00] break-keep"
+            style={{ textWrap: "pretty" }}
+          >
             {section.eyebrow}
           </p>
 
-          <h3 className="mt-4 text-3xl font-extrabold leading-[1.28] tracking-tight text-slate-900 md:text-4xl">
+          <h3
+            className="mx-auto mt-4 max-w-[15ch] text-3xl font-extrabold leading-[1.28] tracking-tight text-slate-900 break-keep md:max-w-none md:text-4xl"
+            style={{ textWrap: "balance" }}
+          >
             {section.title}
           </h3>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.95] text-slate-600">
+          <p
+            className="mx-auto mt-5 max-w-2xl text-base leading-[1.95] text-slate-600 break-keep"
+            style={{ textWrap: "pretty" }}
+          >
             {section.desc}
           </p>
 
           <FadeInSection delay={120}>
             <div className="mx-auto mt-9 max-w-3xl overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-  <img
-    src={section.image}
-    alt={typeof section.title === "string" ? section.title : "섹션 이미지"}
-    className="h-[260px] w-full object-contain bg-white md:h-[575px]"
-  />
-</div>
+              <img
+                src={section.image}
+                alt={typeof section.title === "string" ? section.title : "섹션 이미지"}
+                className="h-[260px] w-full object-contain bg-white md:h-[575px]"
+              />
+            </div>
           </FadeInSection>
-
-          
         </div>
       </FadeInSection>
     </div>
@@ -1073,135 +1086,150 @@ export default function Page() {
           </div>
         </header>
 
-        <section
-          id="intro"
-          data-section-id="hero"
-          className="relative overflow-hidden bg-white"
+<section
+  id="intro"
+  data-section-id="hero"
+  className="relative overflow-hidden bg-white"
+>
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(254,229,0,0.28),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.05),transparent_28%)]" />
+  <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 md:px-6 md:pb-20 md:pt-16">
+    <div className="mx-auto max-w-4xl">
+      <FadeInSection className="text-center">
+        <div className="inline-flex rounded-full border border-[#f3e483] bg-[#fff9d9] px-6 py-3 text-[15px] font-semibold text-[#6d5600] md:px-7 md:py-3.5 md:text-base">
+          30초 만에 확인해보세요!
+        </div>
+
+        <h1
+          className="mx-auto mt-7 max-w-[11ch] text-4xl font-extrabold leading-[1.2] tracking-tight text-slate-900 break-keep md:max-w-none md:text-6xl"
+          style={{ textWrap: "balance" }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(254,229,0,0.28),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.05),transparent_28%)]" />
-          <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-12 md:px-6 md:pb-20 md:pt-16">
-            <div className="mx-auto max-w-4xl">
-              <FadeInSection className="text-center">
-                <div className="inline-flex rounded-full border border-[#f3e483] bg-[#fff9d9] px-6 py-3 text-[15px] font-semibold text-[#6d5600] md:px-7 md:py-3.5 md:text-base">
-                  30초 만에 확인해보세요!
-                </div>
+          내 대출금,
+          <PcBr />
+          얼마나 줄일 수 있을까?
+        </h1>
 
-                <h1 className="mt-7 text-4xl font-extrabold leading-[1.2] tracking-tight text-slate-900 md:text-6xl">
-                  내 대출금,
-                  <br />
-                  얼마나 줄일 수 있을까?
-                </h1>
+        <p
+          className="mt-5 text-2xl font-extrabold leading-[1.35] text-[#7a5c00] break-keep md:text-3xl"
+          style={{ textWrap: "balance" }}
+        >
+          국가 채무조정 제도
+          <PcBr />
+          무료 자가진단 서비스
+        </p>
 
-                <p className="mt-5 text-2xl font-extrabold leading-[1.35] text-[#7a5c00] md:text-3xl">
-                  국가 채무조정 제도
-                  <br />
-                  무료 자가진단 서비스
-                </p>
+        <div className="mt-7 inline-flex flex-wrap items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-bold text-white md:px-7 md:py-4">
+          <span>이자 100% 탕감</span>
+          <span className="text-slate-400">|</span>
+          <span>원금 최대 95% 탕감 가능</span>
+          <span className="text-slate-400">|</span>
+          <span>자가 진단자 평균 60% 이상 탕감</span>
+        </div>
 
-                <div className="mt-7 inline-flex flex-wrap items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-sm font-bold text-white md:px-7 md:py-4">
-                  <span>이자 100% 탕감</span>
-                  <span className="text-slate-400">|</span>
-                  <span>원금 최대 95% 탕감 가능</span>
-                  <span className="text-slate-400">|</span>
-                  <span>자가 진단자 평균 60% 이상 탕감</span>
-                </div>
+        <p
+          className="mx-auto mt-7 max-w-2xl text-lg leading-[1.9] text-slate-600 break-keep"
+          style={{ textWrap: "pretty" }}
+        >
+          빚을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
+          <PcBr />
+          우선 30초 자가진단으로 자격부터 확인해보세요!
+        </p>
 
-                <p className="mt-7 text-lg leading-[1.9] text-slate-600">
-                  빚을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
-                  <br />
-                  우선 30초 자가진단으로 자격부터 확인해보세요!
-                </p>
+        <div className="mt-9 grid gap-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-2">
+          <CTAButton
+            href={KAKAO_LINK}
+            variant="yellow"
+            full
+            onClick={() => trackCtaClick("kakao_consult", "hero")}
+          >
+            카카오톡 상담
+          </CTAButton>
+          <CTAButton
+            onClick={() => {
+              trackCtaClick("diagnosis_start", "hero");
+              openDiagnosisModal("hero");
+            }}
+            variant="diagnosis"
+            full
+          >
+            채무탕감 자가진단
+          </CTAButton>
+        </div>
+      </FadeInSection>
+    </div>
+  </div>
+</section>
 
-                <div className="mt-9 grid gap-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-2">
-                  <CTAButton
-                    href={KAKAO_LINK}
-                    variant="yellow"
-                    full
-                    onClick={() => trackCtaClick("kakao_consult", "hero")}
-                  >
-                    카카오톡 상담
-                  </CTAButton>
-                  <CTAButton
-                    onClick={() => {
-                      trackCtaClick("diagnosis_start", "hero");
-                      openDiagnosisModal("hero");
-                    }}
-                    variant="diagnosis"
-                    full
-                  >
-                    채무탕감 자가진단
-                  </CTAButton>
-                </div>
-              </FadeInSection>
+        <section
+  data-section-id="trust"
+  className="border-y border-slate-200 bg-slate-950 text-white"
+>
+  <div className="mx-auto max-w-7xl px-5 py-10 md:px-6">
+    <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+      <FadeInSection className="text-center md:text-left">
+        <p className="text-[15px] font-semibold uppercase tracking-[0.18em] text-[#fee500] md:text-base">
+          이번 기회를 놓치지 마세요
+        </p>
+
+        <h2
+          className="mx-auto mt-4 max-w-[12ch] text-3xl font-extrabold leading-[1.25] break-keep md:mx-0 md:max-w-none md:text-4xl"
+          style={{ textWrap: "balance" }}
+        >
+          혹시 나도
+          <PcBr />
+          대출금을 줄일 수 있을까?
+        </h2>
+
+        <p
+          className="mx-auto mt-5 max-w-2xl text-base leading-[1.9] text-slate-300 break-keep md:mx-0"
+          style={{ textWrap: "pretty" }}
+        >
+          매달 돌아오는 상환일이 두려우셨나요?
+          <PcBr />
+          이제 나자신과 가족 앞에서 당당해질 때입니다.
+        </p>
+
+        <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
+          <CTAButton
+            href={KAKAO_LINK}
+            variant="yellow"
+            onClick={() => trackCtaClick("kakao_consult", "trust")}
+          >
+            카카오톡 채널 상담하기
+          </CTAButton>
+          <CTAButton
+            onClick={() => {
+              trackCtaClick("diagnosis_start", "trust");
+              openDiagnosisModal("trust");
+            }}
+            variant="diagnosis"
+          >
+            채무탕감 자가진단 시작하기
+          </CTAButton>
+        </div>
+      </FadeInSection>
+
+      <FadeInSection
+        delay={120}
+        className="rounded-[28px] border border-white/10 bg-white/5 p-2 text-center backdrop-blur"
+      >
+        <div className="rounded-[24px] bg-white p-5 text-slate-900">
+          <p className="text-sm font-semibold text-slate-500">자가진단 확인 항목</p>
+          <div className="mt-4 space-y-3">
+            <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
+              직업과 월 평균 소득
+            </div>
+            <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
+              혼인상태와 미성년 자녀 수
+            </div>
+            <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
+              자산 대비 부채 규모
             </div>
           </div>
-        </section>
-
-        <section
-          data-section-id="trust"
-          className="border-y border-slate-200 bg-slate-950 text-white"
-        >
-          <div className="mx-auto max-w-7xl px-5 py-10 md:px-6">
-            <div className="grid gap-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-              <FadeInSection className="text-center md:text-left">
-                <p className="text-[15px] font-semibold uppercase tracking-[0.18em] text-[#fee500] md:text-base">
-                  이번 기회를 놓치지 마세요
-                </p>
-                <h2 className="mt-4 text-3xl font-extrabold leading-[1.25] md:text-4xl">
-                  혹시 나도
-                  <br />
-                  대출금을 줄일 수 있을까?
-                </h2>
-                <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.9] text-slate-300 md:mx-0">
-                  매달 돌아오는 상환일이 두려우셨나요?
-                  <br />
-                  이제 나자신과 가족 앞에서 당당해질 때입니다.
-                </p>
-
-                <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
-                  <CTAButton
-                    href={KAKAO_LINK}
-                    variant="yellow"
-                    onClick={() => trackCtaClick("kakao_consult", "trust")}
-                  >
-                    카카오톡 채널 상담하기
-                  </CTAButton>
-                  <CTAButton
-                    onClick={() => {
-                      trackCtaClick("diagnosis_start", "trust");
-                      openDiagnosisModal("trust");
-                    }}
-                    variant="diagnosis"
-                  >
-                    채무탕감 자가진단 시작하기
-                  </CTAButton>
-                </div>
-              </FadeInSection>
-
-              <FadeInSection
-                delay={120}
-                className="rounded-[28px] border border-white/10 bg-white/5 p-2 text-center backdrop-blur"
-              >
-                <div className="rounded-[24px] bg-white p-5 text-slate-900">
-                  <p className="text-sm font-semibold text-slate-500">
-                    자가진단 확인 항목
-                  </p>
-                  <div className="mt-4 space-y-3">
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
-                      직업과 월 평균 소득
-                    </div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
-                      혼인상태와 미성년 자녀 수
-                    </div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
-                      자산 대비 부채 규모
-                    </div>
-                  </div>
-                </div>
-              </FadeInSection>
-            </div>
-          </div>
-        </section>
+        </div>
+      </FadeInSection>
+    </div>
+  </div>
+</section>
 
         <section
           data-section-id="story-1"
@@ -1249,22 +1277,30 @@ export default function Page() {
           className="mx-auto max-w-7xl px-5 py-16 text-center md:px-6 md:py-20"
         >
           <FadeInSection className="mx-auto mb-10 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-              실제 이용자 후기
-            </p>
-            <h3 className="mt-4 text-4xl font-extrabold tracking-tight leading-[1.28]">
-              로가드 회생은
-              <br />
-              의뢰인의 삶에 집중합니다.
-            </h3>
-            <p className="mt-5 text-lg leading-[1.9] text-slate-600">
-              이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고
-              <br />
-              <span className="text-[#7a5c00] text-[1.5em]">
-                새로운 인생을 출발하셨습니다.
-              </span>
-            </p>
-          </FadeInSection>
+  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+    실제 이용자 후기
+  </p>
+
+  <h3
+    className="mx-auto mt-4 max-w-[13ch] text-4xl font-extrabold tracking-tight leading-[1.28] break-keep md:max-w-none"
+    style={{ textWrap: "balance" }}
+  >
+    로가드 회생은
+    <PcBr />
+    의뢰인의 삶에 집중합니다.
+  </h3>
+
+  <p
+    className="mx-auto mt-5 max-w-2xl text-lg leading-[1.9] text-slate-600 break-keep"
+    style={{ textWrap: "pretty" }}
+  >
+    이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고
+    <PcBr />
+    <span className="text-[#7a5c00] text-[1.5em]">
+      새로운 인생을 출발하셨습니다.
+    </span>
+  </p>
+</FadeInSection>
 
           <FadeInSection delay={120} className="review-marquee text-left">
             <div className="review-marquee-track">
@@ -1309,53 +1345,59 @@ export default function Page() {
         </section>
 
         <section
-          data-section-id="final-cta"
-          className="border-y border-slate-200 bg-slate-950 text-white"
+  data-section-id="final-cta"
+  className="border-y border-slate-200 bg-slate-950 text-white"
+>
+  <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
+    <FadeInSection className="rounded-[34px] bg-white/5 px-6 py-8 text-center backdrop-blur md:px-8 md:py-10">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
+        진단 후 전문가 상담 추천
+      </p>
+
+      <h3
+        className="mx-auto mt-4 max-w-[18ch] text-3xl font-extrabold leading-[1.28] break-keep md:max-w-none md:text-4xl"
+        style={{ textWrap: "balance" }}
+      >
+        자격 요건이 된다면 전문가 무료 상담을 통해
+        <PcBr />
+        <span className="text-[#fee500] text-[1.14em]">희망을 현실로 만드세요</span>
+      </h3>
+
+      <p
+        className="mx-auto mt-5 max-w-3xl text-base leading-[1.9] text-slate-300 break-keep"
+        style={{ textWrap: "pretty" }}
+      >
+        자가진단 30초
+        <PcBr />
+        전문가 무료상담 5분
+        <PcBr />
+        <PcBr />
+        <span className="text-[#fee500] text-[1.18em]">
+          용기 있는 선택은 인생을 바꿉니다.
+        </span>
+      </p>
+
+      <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center">
+        <CTAButton
+          href={KAKAO_LINK}
+          variant="yellow"
+          onClick={() => trackCtaClick("kakao_consult", "final-cta")}
         >
-          <div className="mx-auto max-w-7xl px-5 py-8 md:px-6">
-            <FadeInSection className="rounded-[34px] bg-white/5 px-6 py-8 text-center backdrop-blur md:px-8 md:py-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#fee500]">
-                진단 후 전문가 상담 추천
-              </p>
-              <h3 className="mt-4 text-3xl font-extrabold leading-[1.28] md:text-4xl">
-                자격 요건이 된다면 전문가 무료 상담을 통해
-                <br />
-                <span className="text-[#fee500] text-[1.14em]">
-                  희망을 현실로 만드세요
-                </span>
-                <br />
-              </h3>
-              <p className="mx-auto mt-5 max-w-3xl text-base leading-[1.9] text-slate-300">
-                자가진단 30초
-                <br />
-                전문가 무료상담 5분
-                <br />
-                <br />
-                <span className="text-[#fee500] text-[1.18em]">
-                  용기 있는 선택은 인생을 바꿉니다.
-                </span>
-              </p>
-              <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <CTAButton
-                  href={KAKAO_LINK}
-                  variant="yellow"
-                  onClick={() => trackCtaClick("kakao_consult", "final-cta")}
-                >
-                  카카오톡 채널 상담하기
-                </CTAButton>
-                <CTAButton
-                  onClick={() => {
-                    trackCtaClick("diagnosis_start", "final-cta");
-                    openDiagnosisModal("final-cta");
-                  }}
-                  variant="diagnosis"
-                >
-                  채무탕감 자가진단 시작하기
-                </CTAButton>
-              </div>
-            </FadeInSection>
-          </div>
-        </section>
+          카카오톡 채널 상담하기
+        </CTAButton>
+        <CTAButton
+          onClick={() => {
+            trackCtaClick("diagnosis_start", "final-cta");
+            openDiagnosisModal("final-cta");
+          }}
+          variant="diagnosis"
+        >
+          채무탕감 자가진단 시작하기
+        </CTAButton>
+      </div>
+    </FadeInSection>
+  </div>
+</section>
 
         <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-5 py-10 text-center md:px-6">
@@ -2056,23 +2098,29 @@ export default function Page() {
                   ) : (
                     <div className="mt-8 space-y-6">
                       <div className="rounded-[30px] border border-red-100 bg-red-50 p-6">
-                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">
-                          [안내]
-                        </p>
-                        <h5 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900">
-                          조금 더 자세히 살펴볼 필요가 있어요. 
-                        </h5>
-                        <p className="mt-2 text-base leading-8 text-slate-700">
-                          입력해 주신 내용만으로는 개인회생이 조금 어려운 조건이 보여요.
-                          <br />
-                          그런데, 걱정부터 하지 마세요.
-                          <br />
-                          수치만으로는 판단하기 어려운 부분이 많고, 실
-                          제로는 상황에 따라 충분히 가능한 경우도 많습
-                          니다. 전문가와 잠시 이야기 나눠보시면 훨씬 선
-                          명해질 거예요.
-                        </p>
-                      </div>
+  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">
+    [안내]
+  </p>
+
+  <h5
+    className="mt-2 text-3xl font-extrabold leading-tight text-slate-900 break-keep"
+    style={{ textWrap: "balance" }}
+  >
+    조금 더 자세히 살펴볼 필요가 있어요.
+  </h5>
+
+  <p
+    className="mt-2 text-base leading-8 text-slate-700 break-keep"
+    style={{ textWrap: "pretty" }}
+  >
+    입력해 주신 내용만으로는 개인회생이 조금 어려운 조건이 보여요.
+    <PcBr />
+    그런데, 걱정부터 하지 마세요.
+    <PcBr />
+    수치만으로는 판단하기 어려운 부분이 많고, 실제로는 상황에 따라 충분히 가능한 경우도 많습니다.
+    전문가와 잠시 이야기 나눠보시면 훨씬 선명해질 거예요.
+  </p>
+</div>
 
                       <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
@@ -2091,32 +2139,32 @@ export default function Page() {
                       </div>
 
                       <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
-                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                          이 결과가 끝이 아닙니다.
-                        </p>
-                        <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-                          <p>
-                            위 결과는 입력하신 정보 기준 1차 예상치일 뿐 입니다. 
-                          </p>
-                          <p>
-                            실제로는 서류 한 장, 조건 하나의 차이로 결과 가 완전히 달라지는 경우가 많습니다.
-                          <p>
-                            부담 없이 카카오톡으로 말씀만 주셔도 됩니다. 상담은 무료이며, 원치 않으시면 언제든 중단하 실 수 있습니다. 
-                          </p>
-                          </p>
-                        </div>
-                        <a
-                          href={KAKAO_LINK}
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={() =>
-                            trackCtaClick("kakao_consult", "diagnosis_unsuitable")
-                          }
-                          className="pressable mt-6 inline-flex rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
-                        >
-                          카카오톡 상담하기
-                        </a>
-                      </div>
+  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+    이 결과가 끝이 아닙니다.
+  </p>
+
+  <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
+    <p className="break-keep" style={{ textWrap: "pretty" }}>
+      위 결과는 입력하신 정보 기준 1차 예상치일 뿐 입니다.
+    </p>
+    <p className="break-keep" style={{ textWrap: "pretty" }}>
+      실제로는 서류 한 장, 조건 하나의 차이로 결과가 완전히 달라지는 경우가 많습니다.
+    </p>
+    <p className="break-keep" style={{ textWrap: "pretty" }}>
+      부담 없이 카카오톡으로 말씀만 주셔도 됩니다. 상담은 무료이며, 원치 않으시면 언제든 중단하실 수 있습니다.
+    </p>
+  </div>
+
+  <a
+    href={KAKAO_LINK}
+    target="_blank"
+    rel="noreferrer"
+    onClick={() => trackCtaClick("kakao_consult", "diagnosis_unsuitable")}
+    className="pressable mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
+  >
+    카카오톡으로 상담하기
+  </a>
+</div>
                     </div>
                   )}
 
