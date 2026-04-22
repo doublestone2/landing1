@@ -6,12 +6,12 @@ import posthog from "posthog-js";
 const KAKAO_LINK = "http://pf.kakao.com/_CUPCX/chat";
 const REVIEW_PLACEHOLDER = "/reviews/review-placeholder.jpg";
 
-// 아래 3개는 실제 링크로 바꿔주세요
+// 실제 링크로 바꿔주세요
 const LAWFIRM_SITE_LINK = "https://xn--9z2b2xi4aba940lua.com/";
 const NAVER_CAFE_LINK = "https://cafe.naver.com/coincheating";
 const INSTAGRAM_LINK = "https://instagram.com/yourprofile";
 
-// 아래 3개는 실제 아이콘 이미지 경로로 바꿔주세요
+// 실제 아이콘 경로로 바꿔주세요
 const LAWFIRM_ICON = "/icons/lawfirm-link.png";
 const NAVER_CAFE_ICON = "/icons/naver-cafe-link.png";
 const INSTAGRAM_ICON = "/icons/instagram-link.png";
@@ -52,7 +52,7 @@ const storySections = [
     ),
     desc:
       "자격요건이 된다는 건 큰 혜택입니다. 지금 바로 자격을 확인하세요.",
-    image: "/sections/section01.jpg",
+    image: "/sections/section01.png",
   },
   {
     eyebrow: "매달 선착순 30명만 접수 받아 정확하고 빠르게 진행합니다.",
@@ -70,7 +70,7 @@ const storySections = [
         각 개인별 스토리를 만들고 법원별로 전략을 세분화 해서 제공합니다.
       </>
     ),
-    image: "/sections/section02.jpg",
+    image: "/sections/section02.png",
   },
   {
     eyebrow: (
@@ -96,52 +96,52 @@ const storySections = [
         (최대 5곳까지)
       </>
     ),
-    image: "/sections/section03.jpg",
+    image: "/sections/section03.png",
   },
 ];
 
 const reviewCards = [
   {
-    name: "김 * 연 님 37세 직장인 ",
+    name: "김 * 연 님 37세 직장인",
     title: "카드 돌려막기 3년, 이젠 진짜 숨쉴 수 있어요",
     body:
       "처음엔 전화할 용기도 안 나서 카톡으로 문의했는데, 생각보다 편하게 얘기할 수 있었어요. 전화 상담까지 이어졌고, 월급이 320만원인데 원리금만 200 넘게 나가던 상황이었거든요. 지금은 매달 45만원씩만 갚으면 돼서 진짜 살 것 같습니다.",
-    image: "/reviews/review-01.jpg",
+    image: "/reviews/review-01.png",
   },
   {
     name: "최 * 철 님 47세 자영업자(자녀2)",
     title: "코로나 때 빌린 대출이 눈덩이처럼 불어나 막막했습니다...",
     body:
       "가게 문 닫고 나서 은행 4곳, 카드 3장에 9,000만원 가까이 빚이 있었습니다. 혼자 알아볼 땐 '나 같은 사람은 안 되겠지' 싶었는데, 일단 자가진단이라도 해보시길. 저도 반포기 상태로 했다가 상담까지 이어지고 지금은 빚 1000만원만 남았고 월 27만원만 내고 있어서 새로 출발한 느낌입니다. 정말 감사합니다.ㅠ",
-    image: "/reviews/review-02.jpg",
+    image: "/reviews/review-02.png",
   },
   {
     name: "이 * 선 님 28세 사회초년생",
     title: "부모님한테 말 못 하고 혼자 끙끙 앓다가…",
     body:
-      "학자금이랑 생활비 대출, 카드대출이 쌓여서 첫 월급부터 이자 내느라 모으는 게 없이 생활이 안됐어요. 코인투자로 날린 금액이라 부모님께 말씀드리기도 죄송해서 혼자 끙끙댔는데, 로가드에서 편하게 물어볼 수 있어서 쉽게 시작할 수 있었습니다. 수임료가 아깝다고 느꼈는데 수십배 금액인 수천을 지워주신거니 오히려 벌었다고 생각듭니다.. 다시는 욕심내지 않겠습니다. 감사합니다. ",
-    image: "/reviews/review-03.jpg",
+      "학자금이랑 생활비 대출, 카드대출이 쌓여서 첫 월급부터 이자 내느라 모으는 게 없이 생활이 안됐어요. 코인투자로 날린 금액이라 부모님께 말씀드리기도 죄송해서 혼자 끙끙댔는데, 로가드에서 편하게 물어볼 수 있어서 쉽게 시작할 수 있었습니다. 수임료가 아깝다고 느꼈는데 수십배 금액인 수천을 지워주신거니 오히려 벌었다고 생각듭니다. 다시는 욕심내지 않겠습니다. 감사합니다.",
+    image: "/reviews/review-03.png",
   },
   {
     name: "김 * 아 님 35세 워킹맘",
     title: "아이에게 좋은 옷을 사주지 못해 미안했어요",
     body:
-      "이혼하고 혼자 아이 키우면서 대출이 눈덩이처럼 불어나서 막막 했어요.. 혼자 알아볼 때 몰랐던 부분을 자세하게 짚어 주시고 챙겨 주셔서 편하게 탕감을 받을 수 있었습니다. 이제 월급 받아서 아이에게 더 쓸 수 있어서 너무 행복합니다. 감사합니다.",
-    image: "/reviews/review-04.jpg",
+      "이혼하고 혼자 아이 키우면서 대출이 눈덩이처럼 불어나서 막막했어요. 혼자 알아볼 때 몰랐던 부분을 자세하게 짚어 주시고 챙겨 주셔서 편하게 탕감을 받을 수 있었습니다. 이제 월급 받아서 아이에게 더 쓸 수 있어서 너무 행복합니다. 감사합니다.",
+    image: "/reviews/review-04.png",
   },
   {
-    name: "강 * 준 45세 직장인 가장 ",
+    name: "강 * 준 님 45세 직장인 가장",
     title: "정말 다 포기하고 마지막으로 알아본...",
     body:
-      "사업이 망하고 가족을 지켜보겠다고 대출을 더 끌어다 쓴 게 더 버틸 수 없는 지경에 이르렀었어요. 취직해서 월급을 받아와도 가족보다는 은행, 카드사로 빠져나가는 게 80% 였습니다.. 아이들이 자라서 돈 쓸 일이 더 많아지니 정말 다 포기하고 싶었습니다. 로가드 아니였다면 저는 방법도 모른체로 인생이 끝났을 수도 있었습니다. 정말 너무 감사드립니다. 다시 잘 살아보겠습니다.",
-    image: "/reviews/review-05.jpg",
+      "사업이 망하고 가족을 지켜보겠다고 대출을 더 끌어다 쓴 게 더 버틸 수 없는 지경에 이르렀었어요. 취직해서 월급을 받아와도 가족보다는 은행, 카드사로 빠져나가는 게 80% 였습니다. 아이들이 자라서 돈 쓸 일이 더 많아지니 정말 다 포기하고 싶었습니다. 로가드 아니였다면 저는 방법도 모른체로 인생이 끝났을 수도 있었습니다. 정말 너무 감사드립니다. 다시 잘 살아보겠습니다.",
+    image: "/reviews/review-05.png",
   },
   {
-    name: "박 * 성 53세 자영업자 ",
+    name: "박 * 성 님 53세 자영업자",
     title: "가게 정리를 고민하며 있던 와중에...",
     body:
-      "가게 사업하면서 사채도 많이 써보고 금융사 대출은 쓰고 갚고 한 세월이 벌써 10년이 넘었습니다. 그러다 요즘 재료 값도 비싸 지고 장사가 잘 안되다 보니 빚을 갚지 못하고 있었습니다. 연체되고 가압류 걸리고.. 가게도 폐업하면 돈이 더 들어서 못하고 있었는데 로가드 상담 받고 수임한 후 2개월만에 연체이자 다 없애고, 원금도 80% 이상을 줄일 수 있었습니다. 정말 올해 제일 잘한 일 같습니다.",
-    image: "/reviews/review-06.jpg",
+      "가게 사업하면서 사채도 많이 써보고 금융사 대출은 쓰고 갚고 한 세월이 벌써 10년이 넘었습니다. 그러다 요즘 재료 값도 비싸지고 장사가 잘 안되다 보니 빚을 갚지 못하고 있었습니다. 연체되고 가압류 걸리고, 가게도 폐업하면 돈이 더 들어서 못하고 있었는데 로가드 상담 받고 수임한 후 2개월만에 연체이자 다 없애고, 원금도 80% 이상을 줄일 수 있었습니다. 정말 올해 제일 잘한 일 같습니다.",
+    image: "/reviews/review-06.png",
   },
 ];
 
@@ -172,6 +172,249 @@ const loadingMessages = [
   "월 변제 가능금액과 36개월 총변제금을 계산하고 있어요.",
   "예상 탕감액과 적합 여부를 정리하고 있어요.",
 ];
+
+const PRIVACY_POLICY_TEXT = `개인정보처리방침 안내
+
+매일법률사무소(이하 “회사”)는 통신비밀보호법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하며, 관련 법령에 의거한 개인정보취급방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다.
+
+1. 수집하는 개인정보의 항목 및 수집방법
+가. 수집하는 개인정보의 항목
+회사는 회원가입, 상담, 콘텐츠구매, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.
+
+필수사항 : 아이디, 비밀번호, 비밀번호 찾기 질문과 답변, 이메일 주소, 닉네임
+선택사항 : 이름, 전화번호
+또한 서비스 이용과정이나 사업처리 과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.
+
+IP Address, 쿠키, 접속로그, 서비스 이용 기록, 불량 이용 기록, 결제기록
+
+나. 개인정보 수집방법
+회사는 다음과 같은 방법으로 개인정보를 수집합니다.
+
+홈페이지 회원가입, 상담게시판, 이메일, 이벤트 응모, 배송요청
+협력회사로부터의 제공
+생성정보 수집 툴을 통한 수집
+
+2. 개인정보의 수집 및 이용목적
+가. 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산
+콘텐츠 제공, 구매 및 요금 결제, 요금추심
+
+나. 회원 관리
+회원제 서비스 이용 및 제한적 본인 확인제에 따른 본인확인, 개인식별, 불량회원의 부정 이용방지와 비인가 사용방지, 가입의사 확인, 가입 및 가입횟수 제한, 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부 확인, 추후 법정 대리인 본인확인, 분쟁 조정을 위한 기록보존, 불만처리 등 민원처리, 고지사항 전달
+
+다. 신규서비스 개발 및 마케팅 및 광고에 활용
+신규 서비스(제품) 개발 및 특화 , 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계, 이벤트 등 광고성 정보 전달
+
+3. 개인정보의 공유 및 제공
+회사는 이용자의 개인정보를 "2. 개인정보의 수집목적 및 이용목적"에서 고지한 범위내에서 사용하며, 이용자의 사전 동의 없이는 동 범위를 초과하여 이용하거나 원칙적으로 이용자의 개인정보를 외부에 공개하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.
+
+이용자가 사전에 공개에 동의한 경우
+법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
+
+4. 개인정보의 취급위탁
+회사는 이용자의 동의없이 개인정보 취급을 외부 업체에 위탁하지 않습니다. 향후 그러한 필요가 생길 경우, 위탁 대상자와 위탁 업무 내용에 대해 고객님에게 통지하고 필요한 경우 사전 동의를 받도록 하겠습니다.
+
+5. 개인정보의 보유 및 이용기간
+이용자 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 다음의 정보에 대해서는 아래와 같이 이유로 명시한 기간 동안 보존합니다.
+
+가. 회사 내부 방침에 의한 정보보유 사유
+부정이용기록
+
+보존 이유 : 부정 이용 방지
+보존 기간 : 1년 
+나. 관련법령에 의한 정보보유 사유
+상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.
+
+상거래 관련 기록
+
+보존 이유 : 전자상거래 등에서의 소비자보호에 관한 법률
+보존 기간 : 계약 또는 청약철회 등에 관한 기록 : 5년
+대금결제 및 재화 등의 공급에 관한 기록 : 5년
+소비자의 불만 또는 분쟁처리에 관한 기록 : 3년
+본인확인에 관한 기록 
+
+보존 이유 : 정보통신망 이용촉진 및 정보보호 등에 관한 법률 
+보존 기간 : 6개월 
+방문에 관한 기록 
+
+보존 이유 : 통신비밀보호법 
+보존 기간 : 3개월
+
+6. 개인정보 파기절차 및 방법
+이용자의 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다.
+
+회사의 개인정보 파기절차 및 방법은 다음과 같습니다.
+
+가. 파기절차
+이용자가 회원가입 등을 위해 입력한 정보는 목적이 달성된 후 별도의 DB로 옮겨져(종이의 경우 별도의 서류함) 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라(보유 및 이용기간 참조) 일정 기간 저장된 후 파기됩니다.
+동 개인정보는 법률에 의한 경우가 아니고서는 보유되는 이외의 다른 목적으로 이용되지 않습니다.
+나. 파기방법
+종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.
+전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
+
+7. 이용자 및 법정대리인의 권리와 그 행사방법
+이용자 및 법정 대리인은 언제든지 등록되어 있는 자신 혹은 당해 만 14세 미만 아동의 개인정보를 조회하거나 수정할 수 있으며 가입해지를 요청할 수도 있습니다.
+이용자 혹은 만 14세 미만 아동의 개인정보 조회, 수정을 위해서는 '회원정보 보기'(또는 '회원정보수정' 등)을, 가입해지(동의철회)를 위해서는 "탈퇴"를 클릭하여 직접 열람, 정정 또는 탈퇴가 가능합니다.
+이용자가 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. 또한 잘못된 개인정보를 제3 자에게 이미 제공한 경우에는 정정 처리결과를 제3자에게 지체 없이 통지하여 정정이 이루어지도록 하겠습니다.
+회사는 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제된 개인정보는 "5. 개인정보의 보유 및 이용기간"에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
+
+8. 개인정보 자동 수집 장치의 설치/운영 및 거부에 관한 사항
+회사는 개인화되고 맞춤화된 서비스를 제공하기 위해서 이용자의 정보를 저장하고 수시로 불러오는 '쿠키(cookie)'를 사용합니다. 쿠키는 웹사이트를 운영하는데 이용되는 서버가 이용자의 브라우저에게 보내는 아주 작은 텍스트 파일로 이용자 컴퓨터의 하드디스크에 저장됩니다.
+
+가. 쿠키의 사용 목적
+이용자가 방문한 각 서비스와 웹 사이트들에 대한 방문 및 이용형태, 인기 검색어, 보안접속 여부, 뉴스편집, 이용자 규모 등을 파악하여 이용자에게 최적화된 정보 제공을 위하여 사용합니다.
+
+나. 쿠키의 설치/운영 및 거부
+이용자는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서 이용자는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.
+다만, 쿠키의 저장을 거부할 경우에는 로그인이 필요한 일부 서비스는 이용에 어려움이 있을 수 있습니다.
+
+9. 개인정보의 기술적/관리적 보호 대책
+회사는 이용자의 개인정보를 취급함에 있어 개인정보가 분실, 도난, 누출, 변조 또는 훼손되지 않도록 안전성 확보를 위하여 다음과 같은 기술적/관리적 대책을 강구하고 있습니다.
+
+가. 기술적인 대책
+회원님의 개인정보는 비밀번호에 의해 보호되며, 파일 및 전송 데이터를 암호화하거나 파일 잠금기능(Lock)을 사용하여 중요한 데이터는 별도의 보안기능을 통해 보호되고 있습니다.
+당사는 백신프로그램을 이용하여 컴퓨터바이러스에 의한 피해를 방지하기 위한 조치를 취하고 있습니다. 백신프로그램은 주기적으로 업데이트되며 갑작스런 바이러스가 출현될 경우 백신이 나오는 즉시 이를 적용함으로써 개인정보가 침해되는 것을 방지하고 있습니다.
+당사는 암호알고리즘을 이용하여 네트워크 상의 개인정보를 안전하게 전송할 수 있는 보안장치(SSL 또는 SET)를 채택하고 있습니다.
+해킹 등에 의해 귀하의 개인정보가 유출되는 것을 방지하기 위하여, 외부로부터의 침입을 차단하는 장치를 이용하고 있으며 주요 서버마다 침입탐지시스템을 설치하여 24시간 침입을 감시하고 있습니다.
+나. 관리적인 대책
+위와 같은 노력 이외에 회원님 스스로도 제3자에게 비밀번호 등이 노출되지 않도록 주의하셔야 합니다. 특히 비밀번호 등이 공공장소에 설치한 PC를 통해 유출되지 않도록 항상 유의하시기 바랍니다. 회원님의 ID와 비밀번호는 반드시 본인만 사용하시고 비밀번호를 자주 바꿔주시는 것이 좋습니다.
+당사는 개인정보 취급직원을 개인정보 관리업무를 수행하는 자 및 업무상 개인정보의 취급이 불가피 한 자로 엄격히 제한하고 담당직원에 대한 수시 교육을 통하여 본 정책의 준수를 강조하고 있으며, 보안부서의 이행점검을 통하여 본 정책의 이행사항 및 담당직원의 준수여부를 확인하여 문제가 발견될 경우 바로 시정조치하고 있습니다.
+
+10. 개인정보관리책임자 연락처
+귀하께서는 회사의 서비스를 이용하시며 발생하는 모든 개인정보보호 관련 민원을 개인정보관리책임자에게 신고하실 수 있습니다.
+
+회사는 이용자의 신고사항에 대해 신속하게 충분한 답변을 드릴 것입니다.
+
+개인정보관리책임자
+성명 : 김민석(주), 배형섭(부)
+전화번호 : 02-6283-1100
+이메일 : maeil@lawmaeil.com
+기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
+
+개인정보침해신고센터 (www.cyberprivacy.or.kr / 1336)
+대검찰청 인터넷범죄수사센터 (http://sppo.go.kr / 02-3480-3600)
+경찰청 사이버테러대응센터 (www.ctrc.go.kr / 02-392-0330)
+
+11. 고지의 의무
+현 개인정보취급방침 내용 추가, 삭제 및 수정이 있을 시에는 개정 최소 7일전부터 홈페이지의 "공지사항"을 통해 고지할 것입니다.
+
+공고일자 : 2024년 11월 11일
+시행일자 : 2024년 11월 11일
+수정일자 : 2024년 11월 11일`;
+
+function ResultSupportCards({ onTrackCta }) {
+  return (
+    <div className="mt-8 space-y-5">
+      <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+          다른 어려움 확인
+        </p>
+
+        <h5 className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900">
+          혹시, 다른 어려움도 있으신가요?
+        </h5>
+
+        <p className="mt-4 text-sm leading-7 text-slate-600">
+          채무 문제 외에도 혼자 감당하시기 어려운 일이 있으실 수 있습니다.
+          <br />
+          조심스럽게, 여쭤봅니다.
+        </p>
+
+        <div className="mt-5 space-y-3 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
+          <label className="flex items-start gap-3">
+            <input type="checkbox" disabled className="mt-1 h-4 w-4" />
+            <span>
+              보이스피싱·리딩방·코인·투자 사기로 재산 피해를 입으셨나요?
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input type="checkbox" disabled className="mt-1 h-4 w-4" />
+            <span>
+              불법 사채나 대부업체의 과도한 추심에 시달리고 계신가요?
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input type="checkbox" disabled className="mt-1 h-4 w-4" />
+            <span>
+              전세 사기나 보증금 반환 문제로 어려움을 겪고 계신가요?
+            </span>
+          </label>
+
+          <label className="flex items-start gap-3">
+            <input type="checkbox" disabled className="mt-1 h-4 w-4" />
+            <span>
+              이혼·가사 문제, 형사 사건 등 다른 법률적 도움이 필요하신가요?
+            </span>
+          </label>
+        </div>
+
+        <p className="mt-5 text-sm leading-7 text-slate-600">
+          매일법률사무소는 채무조정 외에도 다양한 영역에서 의뢰인을 도와드리고
+          있습니다.
+          <br />
+          어떤 상황이든, 먼저 말씀만 주시면 조심스럽게 함께 살펴보겠습니다.
+        </p>
+
+        <div className="mt-6">
+          <a
+            href={KAKAO_LINK}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => onTrackCta("kakao_consult", "result_support_card")}
+            className="pressable inline-flex w-full items-center justify-center rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
+          >
+            카카오톡으로 상담하기
+          </a>
+        </div>
+      </div>
+
+      <div className="rounded-[30px] border border-slate-200 bg-[#fffdf4] p-6 shadow-sm">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
+          로가드 카페 안내
+        </p>
+
+        <h5 className="mt-3 text-2xl font-extrabold leading-[1.35] text-slate-900">
+          혼자 고민하지 마세요.
+          <br />
+          로가드가 여러분의 삶을 지켜드립니다.
+        </h5>
+
+        <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700">
+          <p>
+            바로 상담이 부담스러우시다면, 로가드 카페에서 비슷한 상황을 겪으신
+            <br />
+            다른 분들의 이야기와 해결 사례를 먼저 확인해 보실 수 있어요.
+          </p>
+
+          <p>
+            개인회생·파산, 사기 피해 대응, 불법 추심 해결까지
+            <br />
+            실제 경험과 도움이 되는 정보가 모여 있습니다.
+          </p>
+
+          <p>
+            생각보다 많은 분들이 같은 길을 걸어오셨고,
+            <br />
+            지금은 웃으며 과거를 돌아보고 계십니다.
+          </p>
+        </div>
+
+        <div className="mt-6">
+          <a
+            href={NAVER_CAFE_LINK}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => onTrackCta("cafe_visit", "result_support_card")}
+            className="pressable inline-flex w-full items-center justify-center rounded-2xl border border-[#c9a23e] bg-gradient-to-b from-[#c79b25] to-[#9d7417] px-6 py-4 text-sm font-bold text-white"
+          >
+            로가드 카페 둘러보기
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function FadeInSection({
   children,
@@ -299,12 +542,12 @@ function StorySection({ section, onOpenDiagnosis, onTrackCta, sectionId }) {
 
           <FadeInSection delay={120}>
             <div className="mx-auto mt-9 max-w-3xl overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-              <img
-                src={section.image}
-                alt={typeof section.title === "string" ? section.title : "섹션 이미지"}
-                className="h-[220px] w-full object-cover md:h-[320px]"
-              />
-            </div>
+  <img
+    src={section.image}
+    alt={typeof section.title === "string" ? section.title : "섹션 이미지"}
+    className="h-[260px] w-full object-contain bg-white md:h-[575px]"
+  />
+</div>
           </FadeInSection>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -339,7 +582,14 @@ function ProgressRing({ progress }) {
   return (
     <div className="relative mx-auto h-48 w-48">
       <svg viewBox="0 0 180 180" className="h-full w-full -rotate-90 transform">
-        <circle cx="90" cy="90" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="14" />
+        <circle
+          cx="90"
+          cy="90"
+          r={radius}
+          fill="none"
+          stroke="#e2e8f0"
+          strokeWidth="14"
+        />
         <circle
           cx="90"
           cy="90"
@@ -403,7 +653,8 @@ function getDiagnosisPayload(form) {
     form.hasVehicle === "있음" ? toNumber(form.vehicleValue) * 10000 : 0;
 
   const totalAssetsWon = realEstateValueWon + depositValueWon + vehicleValueWon;
-  const childCount = form.maritalStatus === "기혼" ? Number(form.minorChildren || 0) : 0;
+  const childCount =
+    form.maritalStatus === "기혼" ? Number(form.minorChildren || 0) : 0;
 
   const familySize = Math.max(
     1,
@@ -421,9 +672,16 @@ function getDiagnosisPayload(form) {
   const expectedRepayment36Won = monthlyDisposableIncomeWon * 36;
   const estimatedInterestWon = totalDebtWon * 0.08 * 3;
   const totalClaimWon = totalDebtWon + estimatedInterestWon;
-  const expectedTotalRepaymentWon = Math.min(totalClaimWon, expectedRepayment36Won);
-  const expectedReductionWon = Math.max(0, totalClaimWon - expectedTotalRepaymentWon);
-  const reductionRate = totalClaimWon > 0 ? (expectedReductionWon / totalClaimWon) * 100 : 0;
+  const expectedTotalRepaymentWon = Math.min(
+    totalClaimWon,
+    expectedRepayment36Won
+  );
+  const expectedReductionWon = Math.max(
+    0,
+    totalClaimWon - expectedTotalRepaymentWon
+  );
+  const reductionRate =
+    totalClaimWon > 0 ? (expectedReductionWon / totalClaimWon) * 100 : 0;
 
   const reasons = [];
   if (["휴직", "무직"].includes(form.occupation)) {
@@ -474,9 +732,7 @@ function getCurrentStepValid(step, form) {
     }
     return true;
   }
-  if (step === 4) {
-    return !!form.hasVehicle;
-  }
+  if (step === 4) return !!form.hasVehicle;
   if (step === 5) return true;
   if (step === 6) return !!form.assetsStatus;
   return true;
@@ -496,6 +752,9 @@ export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [consultation, setConsultation] = useState({ name: "", phone: "" });
+  const [privacyAgreed, setPrivacyAgreed] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+
   const [form, setForm] = useState({
     occupation: "",
     monthlyIncome: "",
@@ -673,6 +932,8 @@ export default function Page() {
     });
     setConsultation({ name: "", phone: "" });
     setSubmitMessage("");
+    setPrivacyAgreed(false);
+    setPrivacyOpen(false);
     setProgress(0);
     setStep(1);
     setIsModalOpen(true);
@@ -689,6 +950,8 @@ export default function Page() {
     setProgress(0);
     setSubmitMessage("");
     setIsSubmitting(false);
+    setPrivacyAgreed(false);
+    setPrivacyOpen(false);
   };
 
   const nextStep = () => {
@@ -725,6 +988,11 @@ export default function Page() {
       return;
     }
 
+    if (!privacyAgreed) {
+      setSubmitMessage("개인정보처리방침 안내에 동의해주세요.");
+      return;
+    }
+
     try {
       setIsSubmitting(true);
       setSubmitMessage("");
@@ -734,6 +1002,7 @@ export default function Page() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           applicant: consultation,
+          privacyAgreed,
           diagnosis: {
             occupation: diagnosis.occupation,
             monthlyIncomeWon: diagnosis.monthlyIncomeWon,
@@ -777,6 +1046,8 @@ export default function Page() {
 
       setSubmitMessage("상담신청이 정상적으로 접수되었습니다.");
       setConsultation({ name: "", phone: "" });
+      setPrivacyAgreed(false);
+      setPrivacyOpen(false);
     } catch (error) {
       setSubmitMessage(error.message || "신청 전송 중 오류가 발생했습니다.");
     } finally {
@@ -789,36 +1060,35 @@ export default function Page() {
   return (
     <>
       <main className="min-h-screen bg-[#f8f8f6] text-slate-900">
-           <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-  <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-3 md:py-3">
-    <div className="flex flex-col items-start">
-      <img
-        src="/head/head01.png"
-        alt="로가드 로고"
-        className="h-[42px] w-auto object-contain md:h-[140px]"
-      />
+        <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-3 md:py-3">
+            <div className="flex flex-col items-start">
+              <img
+                src="/head/head01.png"
+                alt="로가드 로고"
+                className="h-[42px] w-auto object-contain md:h-[140px]"
+              />
+            </div>
 
-    </div>
+            <p
+              className="mt-0 text-[12px] font-black uppercase tracking-[0.1em] text-[#8a6a10] md:text-[30px]"
+              style={{
+                textShadow:
+                  "0 1px 0 rgba(255,255,255,0.95), 0 2px 0 rgba(221,192,108,0.5), 0 5px 12px rgba(60,42,6,0.28)",
+              }}
+            >
+              로가드 회생 ㅣ 국가 채무조정제도
+            </p>
 
-      <p
-  className="mt-0 text-[12px] font-black uppercase tracking-[0.1em] text-[#8a6a10] md:text-[30px]"
-  style={{
-    textShadow:
-      "65 65px 65 rgba(255,255,255,0.95), 65 65px 65 rgba(221,192,108,0.5), 20 150px 150px rgba(60,42,6,0.28)",
-  }}
->
-  로가드 회생 ㅣ 국가 채무조정제도
-</p>
-
-    <div className="flex items-center justify-end">
-      <img
-        src="/head/head02.png"
-        alt="매일법률사무소 로고"
-        className="h-[34px] w-auto object-contain md:h-[45px]"
-      />
-    </div>
-  </div>
-</header>
+            <div className="flex items-center justify-end">
+              <img
+                src="/head/head02.png"
+                alt="매일법률사무소 로고"
+                className="h-[34px] w-auto object-contain md:h-[42px]"
+              />
+            </div>
+          </div>
+        </header>
 
         <section
           id="intro"
@@ -854,7 +1124,7 @@ export default function Page() {
                 </div>
 
                 <p className="mt-7 text-lg leading-[1.9] text-slate-600">
-                  빛을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
+                  빚을 줄이는 방법은 '열심히 일하는 것' 말고도 있습니다.
                   <br />
                   우선 30초 자가진단으로 자격부터 확인해보세요!
                 </p>
@@ -930,7 +1200,9 @@ export default function Page() {
                 className="rounded-[28px] border border-white/10 bg-white/5 p-2 text-center backdrop-blur"
               >
                 <div className="rounded-[24px] bg-white p-5 text-slate-900">
-                  <p className="text-sm font-semibold text-slate-500">자가진단 확인 항목</p>
+                  <p className="text-sm font-semibold text-slate-500">
+                    자가진단 확인 항목
+                  </p>
                   <div className="mt-4 space-y-3">
                     <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm font-bold">
                       직업과 월 평균 소득
@@ -1005,7 +1277,9 @@ export default function Page() {
             <p className="mt-5 text-lg leading-[1.9] text-slate-600">
               이번달도 많은 분들이 로가드를 통해 빚을 제대로 탕감 받고
               <br />
-              <span className="text-[#7a5c00] text-[1.5em]">새로운 인생을 출발하셨습니다.</span>
+              <span className="text-[#7a5c00] text-[1.5em]">
+                새로운 인생을 출발하셨습니다.
+              </span>
             </p>
           </FadeInSection>
 
@@ -1063,7 +1337,9 @@ export default function Page() {
               <h3 className="mt-4 text-3xl font-extrabold leading-[1.28] md:text-4xl">
                 자격 요건이 된다면 전문가 무료 상담을 통해
                 <br />
-                <span className="text-[#fee500] text-[1.14em]">희망을 현실로 만드세요</span>
+                <span className="text-[#fee500] text-[1.14em]">
+                  희망을 현실로 만드세요
+                </span>
                 <br />
               </h3>
               <p className="mx-auto mt-5 max-w-3xl text-base leading-[1.9] text-slate-300">
@@ -1072,7 +1348,9 @@ export default function Page() {
                 전문가 무료상담 5분
                 <br />
                 <br />
-                <span className="text-[#fee500] text-[1.18em]">용기 있는 선택은 인생을 바꿉니다.</span>
+                <span className="text-[#fee500] text-[1.18em]">
+                  용기 있는 선택은 인생을 바꿉니다.
+                </span>
               </p>
               <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <CTAButton
@@ -1274,7 +1552,8 @@ export default function Page() {
                               setForm((prev) => ({
                                 ...prev,
                                 maritalStatus: option,
-                                minorChildren: option === "기혼" ? prev.minorChildren : "",
+                                minorChildren:
+                                  option === "기혼" ? prev.minorChildren : "",
                               }))
                             }
                           >
@@ -1292,7 +1571,9 @@ export default function Page() {
                             {CHILD_OPTIONS.map((count) => (
                               <StepOptionButton
                                 key={count}
-                                selected={String(form.minorChildren) === String(count)}
+                                selected={
+                                  String(form.minorChildren) === String(count)
+                                }
                                 onClick={() =>
                                   setForm((prev) => ({
                                     ...prev,
@@ -1328,7 +1609,8 @@ export default function Page() {
                               setForm((prev) => ({
                                 ...prev,
                                 hasVehicle: option,
-                                vehicleValue: option === "있음" ? prev.vehicleValue : "",
+                                vehicleValue:
+                                  option === "있음" ? prev.vehicleValue : "",
                               }))
                             }
                           >
@@ -1445,8 +1727,10 @@ export default function Page() {
                               setForm((prev) => ({
                                 ...prev,
                                 assetsStatus: option,
-                                realEstateValue: option === "있음" ? prev.realEstateValue : "",
-                                depositValue: option === "있음" ? prev.depositValue : "",
+                                realEstateValue:
+                                  option === "있음" ? prev.realEstateValue : "",
+                                depositValue:
+                                  option === "있음" ? prev.depositValue : "",
                               }))
                             }
                           >
@@ -1467,7 +1751,10 @@ export default function Page() {
                                 onChange={(e) =>
                                   setForm((prev) => ({
                                     ...prev,
-                                    realEstateValue: e.target.value.replace(/[^0-9]/g, ""),
+                                    realEstateValue: e.target.value.replace(
+                                      /[^0-9]/g,
+                                      ""
+                                    ),
                                   }))
                                 }
                                 inputMode="numeric"
@@ -1490,7 +1777,10 @@ export default function Page() {
                                 onChange={(e) =>
                                   setForm((prev) => ({
                                     ...prev,
-                                    depositValue: e.target.value.replace(/[^0-9]/g, ""),
+                                    depositValue: e.target.value.replace(
+                                      /[^0-9]/g,
+                                      ""
+                                    ),
                                   }))
                                 }
                                 inputMode="numeric"
@@ -1600,7 +1890,9 @@ export default function Page() {
                       <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
                         <div className="grid gap-4 sm:grid-cols-2">
                           <div className="rounded-2xl bg-slate-50 p-5">
-                            <p className="text-sm font-bold text-slate-500">월 소득</p>
+                            <p className="text-sm font-bold text-slate-500">
+                              월 소득
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.monthlyIncomeWon)}
                             </p>
@@ -1618,7 +1910,9 @@ export default function Page() {
                               월 변제 가능금액
                             </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
-                              {formatManwonFromWon(diagnosis.monthlyDisposableIncomeWon)}
+                              {formatManwonFromWon(
+                                diagnosis.monthlyDisposableIncomeWon
+                              )}
                             </p>
                           </div>
                           <div className="rounded-2xl bg-slate-50 p-5">
@@ -1626,7 +1920,9 @@ export default function Page() {
                               36개월 예상 총변제금
                             </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
-                              {formatManwonFromWon(diagnosis.expectedTotalRepaymentWon)}
+                              {formatManwonFromWon(
+                                diagnosis.expectedTotalRepaymentWon
+                              )}
                             </p>
                           </div>
                         </div>
@@ -1635,7 +1931,9 @@ export default function Page() {
                       <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
                         <div className="grid gap-5 md:grid-cols-[1fr_auto_1fr] md:items-center">
                           <div className="rounded-2xl bg-slate-50 p-5">
-                            <p className="text-sm font-bold text-slate-500">원금</p>
+                            <p className="text-sm font-bold text-slate-500">
+                              원금
+                            </p>
                             <p className="mt-2 text-2xl font-extrabold text-slate-900">
                               {formatManwonFromWon(diagnosis.totalDebtWon)}
                             </p>
@@ -1672,14 +1970,20 @@ export default function Page() {
 
                       <div className="rounded-[30px] border border-slate-200 bg-slate-50 p-6">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                          축하합니다 !
+                          다행입니다.
                         </p>
                         <h5 className="mt-3 text-2xl font-extrabold text-slate-900">
-                          적합 결과가 나오신 분들은 로펌 전문가 상담을 통해
+                          지금 이 결과를 보시는 순간부터
                           <br />
-                          희망을 현실로 만드세요!
+                          혼자 짊어지시던 무게가 조금씩 가벼워질 수 있습니다. 
+                          <br />
+                          로가드와 매일법률사무소가 끝까지 함께하겠습니다.
                         </h5>
-                        <form onSubmit={handleConsultSubmit} className="mt-6 space-y-4">
+
+                        <form
+                          onSubmit={handleConsultSubmit}
+                          className="mt-6 space-y-4"
+                        >
                           <div>
                             <label className="mb-2 block text-sm font-bold text-slate-700">
                               이름
@@ -1696,6 +2000,7 @@ export default function Page() {
                               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-sm outline-none transition focus:border-slate-900"
                             />
                           </div>
+
                           <div>
                             <label className="mb-2 block text-sm font-bold text-slate-700">
                               전화번호
@@ -1712,6 +2017,43 @@ export default function Page() {
                               className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-4 text-sm outline-none transition focus:border-slate-900"
                             />
                           </div>
+
+                          <div className="rounded-2xl border border-slate-200 bg-white">
+                            <div className="flex items-center justify-between gap-3 px-4 py-3">
+                              <label className="flex items-center gap-2 text-[12px] leading-5 text-slate-600">
+                                <input
+                                  type="checkbox"
+                                  checked={privacyAgreed}
+                                  onChange={(e) =>
+                                    setPrivacyAgreed(e.target.checked)
+                                  }
+                                  className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-900"
+                                />
+                                <span>개인정보처리방침 안내 동의</span>
+                              </label>
+
+                              <button
+                                type="button"
+                                onClick={() => setPrivacyOpen((prev) => !prev)}
+                                className="text-xs font-bold text-slate-500"
+                                aria-expanded={privacyOpen}
+                              >
+                                {privacyOpen ? "▲" : "▼"}
+                              </button>
+                            </div>
+
+                            {privacyOpen && (
+                              <div className="border-t border-slate-200 bg-slate-50 px-4 py-4">
+                                <div className="mb-3 text-sm font-bold text-slate-800">
+                                  개인정보처리방침안내
+                                </div>
+                                <div className="max-h-72 overflow-y-auto rounded-xl border border-slate-200 bg-white p-4 text-[12px] leading-6 text-slate-600 whitespace-pre-wrap">
+                                  {PRIVACY_POLICY_TEXT}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
                           <button
                             type="submit"
                             disabled={isSubmitting}
@@ -1719,6 +2061,7 @@ export default function Page() {
                           >
                             {isSubmitting ? "전송중..." : "상담신청 보내기"}
                           </button>
+
                           {submitMessage ? (
                             <p className="text-sm font-semibold text-slate-700">
                               {submitMessage}
@@ -1731,15 +2074,20 @@ export default function Page() {
                     <div className="mt-8 space-y-6">
                       <div className="rounded-[30px] border border-red-100 bg-red-50 p-6">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-red-600">
-                          [부적합] 변호사 상담 필요
+                          [안내]
                         </p>
                         <h5 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900">
-                          유선 및 카카오톡 상담 신청 부탁드립니다.
+                          조금 더 자세히 살펴볼 필요가 있어요. 
                         </h5>
                         <p className="mt-2 text-base leading-8 text-slate-700">
-                          기입하신 내용만으로는 개인회생이 기각될 수 있는 부분이 확인되어
+                          입력해 주신 내용만으로는 개인회생이 조금 어려운 조건이 보여요.
                           <br />
-                          전문가의 상담이 필요해 보입니다.
+                          그런데, 걱정부터 하지 마세요.
+                          <br />
+                          수치만으로는 판단하기 어려운 부분이 많고, 실
+                          제로는 상황에 따라 충분히 가능한 경우도 많습
+                          니다. 전문가와 잠시 이야기 나눠보시면 훨씬 선
+                          명해질 거예요.
                         </p>
                       </div>
 
@@ -1761,14 +2109,17 @@ export default function Page() {
 
                       <div className="rounded-[30px] border border-slate-200 bg-white p-6 shadow-sm">
                         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#7a5c00]">
-                          안내
+                          이 결과가 끝이 아닙니다.
                         </p>
                         <div className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
                           <p>
-                            위 결과는 입력하신 정보 기준 1차 예상치이며, 자세한 금액은 전문가 상담 및 자료에 따라 달라질 수 있습니다.
+                            위 결과는 입력하신 정보 기준 1차 예상치일 뿐 입니다. 
                           </p>
                           <p>
-                            부적합이 나오더라도 의뢰자의 상황에 따라 신청 가능한 경우도 있으니 카카오톡 채널로 상담 바랍니다.
+                            실제로는 서류 한 장, 조건 하나의 차이로 결과 가 완전히 달라지는 경우가 많습니다.
+                          <p>
+                            부담 없이 카카오톡으로 말씀만 주셔도 됩니다. 상담은 무료이며, 원치 않으시면 언제든 중단하 실 수 있습니다. 
+                          </p>
                           </p>
                         </div>
                         <a
@@ -1786,27 +2137,40 @@ export default function Page() {
                     </div>
                   )}
 
-                  <div className="mt-8 flex justify-between gap-3">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        safeCapture("diagnosis restarted", {
-                          source: diagnosisSourceRef.current,
-                        });
-                        setStep(1);
-                      }}
-                      className="pressable rounded-2xl border border-slate-300 px-5 py-4 text-sm font-bold text-slate-700"
-                    >
-                      다시 진단하기
-                    </button>
-                    <button
-                      type="button"
-                      onClick={closeDiagnosisModal}
-                      className="pressable rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
-                    >
-                      닫기
-                    </button>
-                  </div>
+                  <ResultSupportCards onTrackCta={trackCtaClick} />
+
+                  <div className="mt-8 grid gap-3 sm:grid-cols-3">
+  <button
+    type="button"
+    onClick={() => {
+      safeCapture("diagnosis restarted", {
+        source: diagnosisSourceRef.current,
+      });
+      setStep(1);
+    }}
+    className="pressable rounded-2xl border border-slate-300 px-5 py-4 text-sm font-bold text-slate-700"
+  >
+    다시 진단하기
+  </button>
+
+  <a
+    href={NAVER_CAFE_LINK}
+    target="_blank"
+    rel="noreferrer"
+    onClick={() => trackCtaClick("cafe_visit", "result_bottom_button")}
+    className="pressable inline-flex items-center justify-center rounded-2xl border border-[#c9a23e] bg-gradient-to-b from-[#c79b25] to-[#9d7417] px-6 py-4 text-sm font-bold text-white"
+  >
+    카페 가기
+  </a>
+
+  <button
+    type="button"
+    onClick={closeDiagnosisModal}
+    className="pressable rounded-2xl bg-slate-900 px-6 py-4 text-sm font-bold text-white"
+  >
+    닫기
+  </button>
+</div>
                 </div>
               )}
             </div>
