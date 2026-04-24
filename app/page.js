@@ -1364,7 +1364,7 @@ export default function Page() {
                 로가드 회생 / 국가채무조정제도
               </p>
               <h4 className="mt-2 text-2xl font-extrabold text-slate-900">
-                로가드 · 매일법률사무소 무료 법률상담
+                매일법률사무소 로가드 무료 법률상담
               </h4>
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500">
                 상호명: 매일법률사무소 | 대표자: 김민석 | 사업자등록번호:
@@ -1960,7 +1960,7 @@ export default function Page() {
                           <br />
                           혼자 짊어지시던 무게가 조금씩 가벼워질 수 있습니다. 
                           <br />
-                          로가드와 매일법률사무소가 끝까지 함께하겠습니다.
+                          매일법률사무소 로가드가 끝까지 함께하겠습니다.
                         </h5>
 
                         <form

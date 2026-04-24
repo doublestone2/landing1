@@ -59,54 +59,35 @@ export async function POST(request) {
       timeZone: "Asia/Seoul",
     });
 
-    const row = [
-      submittedAt,
-      name,
-      phone,
-      privacyAgreed ? "동의" : "미동의",
-
-      diagnosis.suitable ? "적합" : "부적합",
-
-      diagnosis.occupation || "",
-      diagnosis.maritalStatus || "",
-      diagnosis.minorChildren ?? 0,
-      diagnosis.hasVehicle || "",
-      formatCurrency(diagnosis.vehicleValueWon),
-
-      diagnosis.assetsStatus || "",
-      formatCurrency(diagnosis.realEstateValueWon),
-      formatCurrency(diagnosis.depositValueWon),
-      formatCurrency(diagnosis.totalAssetsWon),
-
-      formatCurrency(diagnosis.monthlyIncomeWon),
-      formatCurrency(diagnosis.creditLoanWon),
-      formatCurrency(diagnosis.securedLoanWon),
-      formatCurrency(diagnosis.totalDebtWon),
-
-      diagnosis.familySize ?? 0,
-      formatCurrency(diagnosis.minimumLivingCostWon),
-      formatCurrency(diagnosis.monthlyDisposableIncomeWon),
-      formatCurrency(diagnosis.expectedRepayment36Won),
-      formatCurrency(diagnosis.expectedTotalRepaymentWon),
-      formatCurrency(diagnosis.estimatedInterestWon),
-      formatCurrency(diagnosis.totalClaimWon),
-      formatCurrency(diagnosis.expectedReductionWon),
-      Math.round(Number(diagnosis.reductionRate || 0)),
-
-      Array.isArray(diagnosis.unsuitableReasons)
-        ? diagnosis.unsuitableReasons.join(" | ")
-        : "",
-    ];
+const row = [
+  submittedAt, // 1. 접수일시
+  name, // 2. 이름
+  phone, // 3. 전화번호
+  diagnosis.occupation || "", // 4. 직업
+  diagnosis.maritalStatus === "기혼"
+    ? `기혼 (${diagnosis.minorChildren ?? 0}명)`
+    : diagnosis.maritalStatus || "", // 5. 혼인상태(미성년 자녀 수)
+  diagnosis.hasVehicle || "", // 6. 차량 보유 여부
+  formatCurrency(diagnosis.vehicleValueWon), // 7. 차량가액(원)
+  diagnosis.assetsStatus || "", // 8. 자산 보유 여부
+  formatCurrency(diagnosis.realEstateValueWon), // 9. 본인명의 부동산 시세(원)
+  formatCurrency(diagnosis.depositValueWon), // 10. 전세·월세 보증금(원)
+  formatCurrency(diagnosis.totalAssetsWon), // 11. 총자산(원)
+  formatCurrency(diagnosis.monthlyIncomeWon), // 12. 월소득(원)
+  formatCurrency(diagnosis.creditLoanWon), // 13. 신용대출 금액(원)
+  formatCurrency(diagnosis.securedLoanWon), // 14. 담보대출 금액(원)
+ `${Math.round(Number(diagnosis.reductionRate || 0))}%` // 15. 예상 탕감률
+];
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId,
-      range: `${sheetName}!A:AC`,
-      valueInputOption: "USER_ENTERED",
-      insertDataOption: "INSERT_ROWS",
-      requestBody: {
-        values: [row],
-      },
-    });
+  spreadsheetId,
+  range: `${sheetName}!A:O`,
+  valueInputOption: "USER_ENTERED",
+  insertDataOption: "INSERT_ROWS",
+  requestBody: {
+    values: [row],
+  },
+});
 
     return NextResponse.json({
       ok: true,
